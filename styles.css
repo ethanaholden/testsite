@@ -2349,6 +2349,7 @@ body {
     border: 3px solid transparent;
     transition: border-color 0.4s, box-shadow 0.4s;
     box-shadow: inset 0 2px 8px rgba(0,0,0,0.18);
+    overflow: hidden;
 }
 
 .collage-wrapper.silver-border {
@@ -2509,6 +2510,175 @@ body {
     font-size: 0.88rem;
     color: #666;
     margin-bottom: 0.75rem;
+}
+
+/* Collage board title row */
+.collage-title-row {
+    text-align: center;
+    margin-bottom: 0.6rem;
+}
+
+.collage-board-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.92);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.35);
+    letter-spacing: 0.03em;
+}
+
+/* Style toggle buttons */
+.collage-style-toggle {
+    display: flex;
+    gap: 0.4rem;
+    justify-content: center;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.collage-style-btn {
+    padding: 0.3rem 0.75rem;
+    border-radius: 2rem;
+    border: 2px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.18);
+    color: rgba(255,255,255,0.9);
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+    white-space: nowrap;
+}
+
+.collage-style-btn:hover {
+    background: rgba(255,255,255,0.32);
+    border-color: rgba(255,255,255,0.8);
+}
+
+.collage-style-btn.active {
+    background: rgba(255,255,255,0.88);
+    border-color: white;
+    color: #7a5c3a;
+}
+
+/* Empty state */
+.collage-empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 2rem 1rem;
+    color: rgba(255,255,255,0.8);
+}
+
+.collage-empty-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 0.5rem;
+    opacity: 0.6;
+}
+
+.collage-empty-state p {
+    font-size: 0.85rem;
+    margin: 0;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+/* ── Grid style ──────────────────────────── */
+.collage-wrapper.style-grid .collage-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    padding: 3px;
+}
+
+.collage-wrapper.style-grid .collage-cell {
+    transform: none !important;
+    padding: 0;
+    border-radius: 3px;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+.collage-wrapper.style-grid .collage-cell::before { display: none; }
+
+.collage-wrapper.style-grid .collage-cell img {
+    border: none;
+    border-radius: 3px;
+    aspect-ratio: 1;
+}
+
+.collage-wrapper.style-grid .collage-cell:hover {
+    transform: scale(1.04) !important;
+    z-index: 10;
+}
+
+.collage-wrapper.style-grid .collage-cell-label {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.55);
+    color: white;
+    font-size: 0.5rem;
+    padding: 2px 4px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-style: normal;
+    margin-top: 0;
+}
+
+/* ── Hex style ───────────────────────────── */
+.collage-wrapper.style-hex .collage-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.35rem;
+    padding: 0.5rem;
+}
+
+.collage-wrapper.style-hex .collage-cell {
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    aspect-ratio: 1;
+    transform: none !important;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: hidden;
+    background: #d4a96b;
+}
+
+.collage-wrapper.style-hex .collage-cell::before { display: none; }
+
+.collage-wrapper.style-hex .collage-cell img {
+    border: none;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.collage-wrapper.style-hex .collage-cell:hover {
+    transform: scale(1.08) !important;
+    z-index: 10;
+}
+
+.collage-wrapper.style-hex .collage-cell-label { display: none; }
+
+/* ── Mobile collage fixes ────────────────── */
+@media (max-width: 600px) {
+    .collage-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+    }
+
+    .collage-cell {
+        /* Reduce rotation on small screens to prevent overflow */
+        transform: rotate(calc(var(--cell-rot, 0deg) * 0.4));
+    }
+
+    .collage-wrapper.style-grid .collage-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2px;
+    }
+
+    .collage-wrapper.style-hex .collage-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.25rem;
+    }
 }
 
 /* Collage unlock modal */

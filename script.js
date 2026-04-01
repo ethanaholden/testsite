@@ -1109,6 +1109,15 @@ let qrScannerContext = null;
 // Simple photo capture (no AR) — used after QR code discovery
 let photoCaptureStream = null;
 let photoCaptureLocationKey = null;
+let photoCaptureQueuedKey = null; // queued key to auto-open camera after modal chain
+
+function triggerQueuedPhotoCapture() {
+    if (photoCaptureQueuedKey) {
+        const key = photoCaptureQueuedKey;
+        photoCaptureQueuedKey = null;
+        setTimeout(() => startPhotoCapture(key), MODAL_TRANSITION_DELAY);
+    }
+}
 
 function startPhotoCapture(locationKey) {
     photoCaptureLocationKey = locationKey;
@@ -1116,6 +1125,9 @@ function startPhotoCapture(locationKey) {
     const localizedName = loc ? (localizedField(loc, 'name') || loc.name) : 'Location';
     const titleEl = document.getElementById('photo-capture-title');
     if (titleEl) titleEl.textContent = `📸 ${localizedName}`;
+
+    const helpEl = document.getElementById('photo-capture-help');
+    if (helpEl) helpEl.textContent = 'Now take a picture of this site!';
 
     // Reset capture button state
     const btn = document.getElementById('photo-capture-btn');
@@ -1580,17 +1592,15 @@ async function discoverLocation(locationKey, isFirstVisit = false) {
     
     if (discoveryFactEl) discoveryFactEl.innerHTML = factHTML;
 
-    // Show saved photo or offer to take one
+    // Show saved photo or queue auto camera open
     const savedPhoto = localStorage.getItem(`ar_photo_${locationKey}`);
     const photoSection = document.getElementById('discovery-photo-section');
     if (photoSection) {
         if (savedPhoto && savedPhoto.startsWith('data:image/jpeg;base64,')) {
             photoSection.innerHTML = `<p class="ar-photo-label">📸 Your photo:</p><img src="${savedPhoto}" class="ar-captured-photo" alt="Your photo at ${escapeHtml(localizedName)}">`;
         } else {
-            const takePicLabel = t('dynamic.take_photo');
-            photoSection.innerHTML = `<button class="discovery-photo-btn" id="discovery-photo-take-btn" data-location="${escapeHtml(locationKey)}">${takePicLabel}</button>`;
-            const takeBtn = document.getElementById('discovery-photo-take-btn');
-            if (takeBtn) takeBtn.addEventListener('click', function() { startPhotoCapture(this.dataset.location); });
+            photoCaptureQueuedKey = locationKey;
+            photoSection.innerHTML = '';
         }
     }
 
@@ -1659,6 +1669,8 @@ function onDiscoveryModalContinue() {
         surveyPromptPending = false;
         localStorage.setItem('rasnov_survey_shown', '1');
         setTimeout(() => openSurveyPromptModal(), MODAL_TRANSITION_DELAY);
+    } else {
+        triggerQueuedPhotoCapture();
     }
 }
 
@@ -1676,6 +1688,8 @@ function submitFirstDiscoveryName() {
         surveyPromptPending = false;
         localStorage.setItem('rasnov_survey_shown', '1');
         setTimeout(() => openSurveyPromptModal(), MODAL_TRANSITION_DELAY);
+    } else {
+        triggerQueuedPhotoCapture();
     }
 }
 
@@ -1686,6 +1700,8 @@ function skipFirstDiscoveryName() {
         surveyPromptPending = false;
         localStorage.setItem('rasnov_survey_shown', '1');
         setTimeout(() => openSurveyPromptModal(), MODAL_TRANSITION_DELAY);
+    } else {
+        triggerQueuedPhotoCapture();
     }
 }
 
@@ -1703,10 +1719,12 @@ function startSurvey() {
 
 function dismissSurvey() {
     closeModal('survey-modal');
+    triggerQueuedPhotoCapture();
 }
 
 function closeSurveyForm() {
     closeModal('survey-form-modal');
+    triggerQueuedPhotoCapture();
 }
 
 // AR Camera Functions
@@ -3770,6 +3788,11 @@ function showCollageUnlockModal(tier) {
     openModal('collage-unlock-modal');
 }
 
+function setCollageStyle(style) {
+    localStorage.setItem('rasnov_collage_style', style);
+    renderUnlocksTab();
+}
+
 function buildCollageHTML(totalFound) {
     const locationKeys = Object.keys(huntLocations);
     const tier = totalFound >= 10 ? 'gold' : (totalFound >= 6 ? 'silver' : '');
@@ -3777,6 +3800,9 @@ function buildCollageHTML(totalFound) {
     const tierLabelHTML = tier
         ? `<div class="collage-tier-label ${tier}">${tier === 'gold' ? '🥇 Gold Collage' : '🥈 Silver Collage'}</div>`
         : '';
+
+    const collageStyle = localStorage.getItem('rasnov_collage_style') || 'postit';
+    const styleClass = collageStyle === 'hex' ? 'style-hex' : (collageStyle === 'grid' ? 'style-grid' : 'style-postit');
 
     // Pre-defined rotations and tape colours for a natural scattered/polaroid look
     const cellMeta = [
@@ -3790,17 +3816,36 @@ function buildCollageHTML(totalFound) {
         { rot: -4, tape: '#9fc5e8' },
     ];
 
-    const cells = locationKeys.map((key, i) => {
-        const savedPhoto = localStorage.getItem(`ar_photo_${key}`);
-        const loc = huntLocations[key];
-        const label = escapeHtml(localizedField(loc, 'name') || loc.name);
-        const meta = cellMeta[i % cellMeta.length];
-        const style = `--cell-rot: ${meta.rot}deg; --tape-color: ${meta.tape};`;
-        if (savedPhoto && savedPhoto.startsWith('data:image/jpeg;base64,')) {
+    // Only include cells that have a photo (dynamic — no empty placeholders)
+    const photoCells = locationKeys.filter(key => {
+        const p = localStorage.getItem(`ar_photo_${key}`);
+        return p && p.startsWith('data:image/jpeg;base64,');
+    });
+
+    let cellsHTML = '';
+    if (photoCells.length === 0) {
+        cellsHTML = `<div class="collage-empty-state">
+            <span class="collage-empty-icon">📷</span>
+            <p>Your photos will appear here as you explore Rasnov!</p>
+        </div>`;
+    } else {
+        cellsHTML = photoCells.map((key, i) => {
+            const savedPhoto = localStorage.getItem(`ar_photo_${key}`);
+            const loc = huntLocations[key];
+            const label = escapeHtml(localizedField(loc, 'name') || loc.name);
+            const meta = cellMeta[i % cellMeta.length];
+            const style = `--cell-rot: ${meta.rot}deg; --tape-color: ${meta.tape};`;
             return `<div class="collage-cell" style="${style}"><img src="${savedPhoto}" alt="${label}"><span class="collage-cell-label">${label}</span></div>`;
-        }
-        return `<div class="collage-cell collage-cell-empty" style="${style}"><span class="collage-placeholder">📍</span><span class="collage-cell-label">${label}</span></div>`;
-    }).join('');
+        }).join('');
+    }
+
+    // Style toggle buttons
+    const styleToggleHTML = `
+        <div class="collage-style-toggle">
+            <button class="collage-style-btn ${collageStyle === 'postit' ? 'active' : ''}" onclick="setCollageStyle('postit')">📌 Post-it</button>
+            <button class="collage-style-btn ${collageStyle === 'hex' ? 'active' : ''}" onclick="setCollageStyle('hex')">⬡ Hexagons</button>
+            <button class="collage-style-btn ${collageStyle === 'grid' ? 'active' : ''}" onclick="setCollageStyle('grid')">⊞ Grid</button>
+        </div>`;
 
     const shareText = encodeURIComponent('Check out my Rasnov exploration! #discoverrasnov');
     const shareUrl = encodeURIComponent('https://discoverrasnov.com');
@@ -3814,10 +3859,14 @@ function buildCollageHTML(totalFound) {
         <p class="collage-instagram-note">*Instagram does not support direct web sharing. Open Instagram and post with <strong>#discoverrasnov</strong>.</p>
     ` : '';
 
-    return `<div class="collage-wrapper ${borderClass}">
+    return `<div class="collage-wrapper ${borderClass} ${styleClass}">
         ${tierLabelHTML}
-        <div class="collage-grid">${cells}</div>
-        <div class="collage-footer">${totalFound} / 10 places explored${tier ? '' : ' — find 6 for a silver collage, 10 for gold'}</div>
+        <div class="collage-title-row">
+            <span class="collage-board-title">📍 My Rasnov Memories</span>
+        </div>
+        ${styleToggleHTML}
+        <div class="collage-grid">${cellsHTML}</div>
+        <div class="collage-footer">${photoCells.length} photo${photoCells.length !== 1 ? 's' : ''} · ${totalFound} / 10 places explored${tier ? '' : ' — find 6 for a silver collage, 10 for gold'}</div>
         ${shareHTML}
     </div>`;
 }
