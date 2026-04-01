@@ -1,0 +1,368 @@
+{
+  "nav": {
+    "home": "Descoperă Râșnov",
+    "treasureHunt": "Vânătoare Comori",
+    "map": "Hartă",
+    "info": "Info"
+  },
+  "header": {
+    "logo": "Descoperă Râșnov",
+    "guest": "Oaspete"
+  },
+  "hero": {
+    "title": "Bun venit în Râșnov",
+    "subtitle": "Explorați Cetatea istorică, natura uimitoare și cultura românească",
+    "cta": "Începe Explorarea"
+  },
+  "huntHero": {
+    "title": "Vânătoare Comori",
+    "subtitle": "Scanați coduri QR la 8 locații istorice din Râșnov pentru a câștiga puncte!"
+  },
+  "tabs": {
+    "locations": "Locații",
+    "restaurants": "Restaurante",
+    "accommodations": "Cazare",
+    "leaderboard": "Clasament",
+    "unlocks": "Recompense"
+  },
+  "sections": {
+    "topLocations": "Cele mai bune locații de vizitat",
+    "bestRestaurants": "Cele mai bune restaurante",
+    "placesToStay": "Locuri de cazare",
+    "interactiveMap": "Hartă Interactivă",
+    "essentialInfo": "Informații esențiale",
+    "treasureHunt": "Vânătoare Comori",
+    "yourProgress": "Progresul tău"
+  },
+  "locations": {
+    "fortress": {
+      "title": "Cetatea Râșnov",
+      "desc": "O cetate medievală construită de Cavalerii Teutoni în secolul al XIII-lea. Oferă priveliști panoramice impresionante ale Munților Carpați.",
+      "time": "2-3 ore",
+      "ticket": "20 RON"
+    },
+    "dinoparc": {
+      "title": "Dino Parc",
+      "desc": "Cel mai mare parc cu dinozauri din Europa de Sud-Est, cu dinozauri animatronici în mărime naturală. Ideal pentru familii și copii.",
+      "time": "1-2 ore",
+      "ticket": "40 RON"
+    },
+    "peak": {
+      "title": "Piatra Mică",
+      "desc": "Traseu de drumeție către un vârf montan impresionant. Accesibil cu telescaunul sau pe traseu, oferind priveliști spectaculoase.",
+      "time": "3-4 ore",
+      "ticket": "Gratuit (30 RON telescaun)"
+    },
+    "museum": {
+      "title": "Muzeul Satului",
+      "desc": "Explorează viața rurală tradițională românească cu case autentice, unelte și artefacte din istoria regiunii.",
+      "time": "1 oră",
+      "ticket": "10 RON"
+    },
+    "bran": {
+      "title": "Castelul Bran",
+      "desc": "Faimosul Castel al lui Dracula, la doar 15 minute. Fortăreață gotică cu o istorie fascinantă și o arhitectură impresionantă.",
+      "time": "2 ore",
+      "ticket": "45 RON"
+    },
+    "poiana": {
+      "title": "Stațiunea Poiana Brașov",
+      "desc": "Stațiune de schi de top cu 23 km de pârtii. Excelentă pentru sporturi de iarnă și drumeții de vară.",
+      "time": "Toată ziua",
+      "ticket": "150 RON/zi"
+    },
+    "brasov": {
+      "title": "Centrul Istoric Brașov",
+      "desc": "Centru medieval cu Piața Sfatului, Biserica Neagră și străzi pietruite pitorești. La doar 15 km.",
+      "time": "3-4 ore",
+      "ticket": "Gratuit"
+    },
+    "peles": {
+      "title": "Castelul Peleș",
+      "desc": "Capodoperă neo-renascentistă din Sinaia. Unul dintre cele mai frumoase castele din Europa, cu 160 de camere decorate.",
+      "time": "2-3 ore",
+      "ticket": "50 RON"
+    },
+    "national-park": {
+      "title": "Parcul Național Piatra Craiului",
+      "desc": "Areal natural protejat cu creastă calcaroasă spectaculoasă. Potrivit pentru drumeții, observarea faunei și natura sălbatică.",
+      "time": "Toată ziua",
+      "ticket": "Gratuit"
+    },
+    "bear-sanctuary": {
+      "title": "Sanctuarul pentru Urși Libearty",
+      "desc": "Cel mai mare sanctuar pentru urși bruni din Europa. Urși salvați trăind în habitat natural. Turism educativ și etic.",
+      "time": "1-2 ore",
+      "ticket": "25 RON"
+    }
+  },
+  "restaurants": {
+    "cetate": {
+      "title": "Restaurant Cetate",
+      "desc": "Bucătărie tradițională românească în inima cetății. Încercați celebrele sarmale și mici cu mămăligă.",
+      "cuisine": "Românesc"
+    },
+    "ceaun": {
+      "title": "La Ceaun",
+      "desc": "Han primitor cu mâncăruri montane consistente. Ciorbă și păstrăv la grătar sunt preparate obligatorii.",
+      "cuisine": "Tradițional"
+    },
+    "pizzeria": {
+      "title": "Pizzeria Castello",
+      "desc": "Pizzerie italiană cu influențe românești. Pizza la cuptor cu lemne și paste cu ingrediente locale.",
+      "cuisine": "Italian"
+    },
+    "cafe": {
+      "title": "Cafe Central",
+      "desc": "Cafenea modernă cu cafea excelentă, patiserie și mese ușoare. Perfectă pentru micul dejun sau o pauză.",
+      "cuisine": "Cafenea"
+    },
+    "belvedere-terrace": {
+      "title": "Terasă Belvedere",
+      "desc": "Restaurant cu terasă panoramică. Bucătărie internațională cu priveliști spectaculoase și cine la apus.",
+      "cuisine": "Internațional"
+    },
+    "grill-house": {
+      "title": "Grill House Rasnov",
+      "desc": "Specialist în BBQ cu grătar în aer liber. Faimos pentru grătare mixte, salate proaspete și vinuri locale.",
+      "cuisine": "BBQ/Grătar"
+    },
+    "bistro": {
+      "title": "Bistro Rasnoveana",
+      "desc": "Bistro casual în centrul orașului. Meniuri zilnice, deserturi de casă și atmosferă prietenoasă.",
+      "cuisine": "Bistro"
+    },
+    "vegetarian": {
+      "title": "Vegetarian Haven",
+      "desc": "Restaurant pe bază de plante cu preparate creative. Opțiuni vegane, ingrediente organice și boluri sănătoase.",
+      "cuisine": "Vegetarian"
+    }
+  },
+  "accommodations": {
+    "ambient": {
+      "title": "Hotel Ambient",
+      "desc": "Hotel modern de 4 stele cu facilități spa, vedere la munte și micul dejun excelent. Aproape de cetate.",
+      "type": "4 stele"
+    },
+    "belvedere": {
+      "title": "Pensiunea Belvedere",
+      "desc": "Pensiune de familie cu ospitalitate tradițională românească. Micul dejun de casă și priveliști superbe.",
+      "type": "3 stele"
+    },
+    "petre": {
+      "title": "Casa Petre",
+      "desc": "Apartamente fermecătoare în centrul vechi. Bucătării complet utilate și decor românesc autentic.",
+      "type": "Apartament"
+    },
+    "hostel": {
+      "title": "Hostel Montan",
+      "desc": "Hostel economic, ideal pentru backpackeri. Bucătărie comună, zonă de relaxare și excursii organizate.",
+      "type": "Hostel"
+    },
+    "villa": {
+      "title": "Villa Carpathia",
+      "desc": "Vilă de lux cu grădină privată și piscină. Perfectă pentru familii sau grupuri care caută intimitate.",
+      "type": "Vilă"
+    },
+    "boutique": {
+      "title": "Boutique Hotel Residence",
+      "desc": "Hotel boutique stilat cu facilități moderne. Bar pe acoperiș, sală de sport și design contemporan.",
+      "type": "4 stele"
+    },
+    "cabins": {
+      "title": "Căsuțe Montane",
+      "desc": "Căsuțe din lemn confortabile în natură. Perfecte pentru escapade romantice cu șemineu și terasă privată.",
+      "type": "Cabană"
+    },
+    "casa-maria": {
+      "title": "Casa Maria B&B",
+      "desc": "Pensiune tradițională cu farmec local. Mese bogate de casă și servicii personalizate.",
+      "type": "B&B"
+    }
+  },
+  "map": {
+    "description": "Hartă interactivă care afișează toate locațiile, restaurantele și cazările",
+    "loadBtn": "Încarcă Harta",
+    "mapLabel": "Hartă Interactivă",
+    "locations": "📍 Locații",
+    "restaurants": "🍽️ Restaurante",
+    "accommodations": "🏨 Cazări",
+    "infoLine": "În producție, aceasta afișează o hartă interactivă completă, bazată pe OpenStreetMap/Leaflet"
+  },
+  "info": {
+    "emergency": {
+      "title": "Urgență",
+      "police": "Poliție",
+      "medical": "Medical",
+      "touristInfo": "Info Turist"
+    },
+    "transportation": {
+      "title": "Transport",
+      "busToBrasov": "Autobuz la Brașov",
+      "taxi": "Taxi",
+      "carRental": "Închiriere Mașini"
+    },
+    "language": {
+      "title": "Limbă",
+      "main": "Principal",
+      "common": "Obișnuit",
+      "tip": "Sfat"
+    },
+    "currency": {
+      "title": "Valută",
+      "currency": "Valută",
+      "atms": "Bancomate",
+      "cards": "Cărți"
+    },
+    "hours": {
+      "title": "Ore de Deschidere",
+      "fortress": "Cetate",
+      "shops": "Magazine",
+      "restaurants": "Restaurante"
+    },
+    "visitTime": {
+      "title": "Cel mai Bun Timp pentru Vizită",
+      "peak": "Vârf",
+      "shoulder": "Transițional",
+      "winter": "Iarnă"
+    }
+  },
+  "footer": {
+    "aboutTitle": "Despre Râșnov",
+    "aboutText": "Oraș istoric din Transilvania, România, cunoscut pentru cetatea medievală și peisajele muntoase impresionante.",
+    "quickLinks": "Linkuri rapide",
+    "contact": "Contact",
+    "copyright": "© 2026 Descoperă Râșnov. Făcut cu ❤ pentru turiști.",
+    "home": "Acasă",
+    "treasureHunt": "Vânătoare",
+    "map": "Hartă",
+    "info": "Info"
+  },
+  "hunt": {
+    "title": "Vânătoare Comori",
+    "subtitle": "Explorează Râșnov într-un mod distractiv și interactiv!",
+    "startBtn": "Începe Vânătoarea",
+    "resetBtn": "Resetează Vânătoarea",
+    "scanBtn": "Scanează QR",
+    "useLocation": "Folosește Locația",
+    "nextSiteLabel": "Locul următor: ",
+    "tabHunt": "Vânătoare",
+    "tabLeaderboard": "Clasament",
+    "tabRewards": "Recompense",
+    "yourProgress": "Progresul tău",
+    "locationsFound": "{{count}} / {{total}} locații găsite"
+  },
+  "huntItems": {
+    "fortress": "Poarta Cetății Râșnov",
+    "well": "Fântâna Antică",
+    "tower": "Turnul de Veghe",
+    "church": "Biserica Veche",
+    "museum": "Muzeul Satului",
+    "peak": "Vârful Muntelui",
+    "square": "Piața Orașului",
+    "dino": "Intrarea Dino Parc"
+  },
+  "leaderboard": {
+    "title": "🏆 Clasament",
+    "subtitle": "Top Exploratori Râșnov - Clasați după Puncte",
+    "yourRank": "Rangul tău:",
+    "yourPoints": "Punctele tale:",
+    "totalPlayers": "Total Jucători:",
+    "colRank": "#",
+    "colPlayer": "Jucător",
+    "colPoints": "Puncte",
+    "colLocations": "Locații",
+    "colStatus": "Status",
+    "loading": "Se încarcă clasamentul...",
+    "refresh": "Reîmprospătare"
+  },
+  "modal": {
+    "qr": {
+      "title": "Scanează codul QR",
+      "help": "Îndreptați camera către un cod QR la una dintre locațiile vânătorii"
+    },
+    "welcome": {
+      "title": "Bun venit în Râșnov!",
+      "continue": "Continuă Vânătoarea"
+    },
+    "discovery": {
+      "title": "Locație Găsită!",
+      "continue": "Continuă Vânătoarea"
+    },
+    "firstDiscovery": {
+      "title": "🎉 Felicitări!",
+      "message": "Ai găsit prima locație! Adaugă-ți numele pentru a apărea pe clasament.",
+      "placeholder": "Numele tău",
+      "save": "Salvează Numele",
+      "skip": "Sari deocamdată"
+    },
+    "survey": {
+      "title": "Sondaj rapid",
+      "message": "Doriți să completați un sondaj rapid despre timpul petrecut în Râșnov? Analizăm fiecare răspuns pentru a îmbunătăți site-ul!",
+      "reward": "🎁 Deblocați o temă specială ca mulțumire!",
+      "yes": "Da, completez sondajul!",
+      "no": "Poate mai târziu",
+      "formTitle": "Sondaj Râșnov",
+      "openTab": "Deschide în filă nouă ↗"
+    }
+  },
+  "ar": {
+    "loading": "Se inițializează camera...",
+    "huntBanner": "Găsește Grizzly și fă o poză!",
+    "tapToPlace": "Atinge inelul luminos pentru a plasa Grizzly",
+    "testMode": "Mod Testare Activ"
+  },
+  "card": {
+    "learnMore": "Aflați mai multe",
+    "viewMenu": "Vezi Meniu",
+    "checkAvailability": "Verificați Disponibilitatea"
+  },
+  "msg": {
+    "startHuntFirst": "Vă rugăm să porniți vânătoarea mai întâi!",
+    "gettingLocation": "Se obține locația dvs...",
+    "locationError": "Nu s-a putut obține locația. Activați serviciile de localizare.",
+    "geolocationNotSupported": "Geolocalizarea nu este acceptată de browserul dvs.",
+    "testingModeEnabled": "Mod testare activat! Apăsați pe orice locație pentru a o marca ca găsită.",
+    "testingModeDisabled": "Mod testare dezactivat.",
+    "noCameraSupport": "Accesul la cameră nu este acceptat de acest browser. Folosiți un browser modern cu HTTPS.",
+    "cameraAccessError": "Nu se poate accesa camera. Modul testare permite selecție manuală.",
+    "qrSuccess": "Cod QR scanat cu succes!",
+    "alreadyFound": "Ai găsit deja această locație!",
+    "qrNotRecognized": "Cod QR nerecunoscut. Asigurați-vă că sunteți la o locație a vânătorii.",
+    "noLocationsNearby": "Nicio locație în apropiere. Continuați explorarea!",
+    "cameraAccessDenied": "Imposibil de accesat camera.",
+    "allowCameraAccess": "Permiteți accesul la cameră pentru a continua.",
+    "noCameraFound": "Nu s-a găsit nicio cameră pe acest dispozitiv.",
+    "cameraNotSupported": "Camera nu este acceptată de acest browser. Folosiți HTTPS.",
+    "checkCameraSettings": "Verificați setările camerei.",
+    "cameraRequiresHttps": "Camera necesită HTTPS. Accesați site-ul prin https://.",
+    "mapLoaded": "Harta încărcată cu toate locațiile!",
+    "mapLoadedSuccess": "Harta a fost încărcată cu succes!",
+    "selectQrCode": "Selectați un cod QR pentru scanare:",
+    "huntStarted": "Vânătoarea a început! Găsiți toate cele 8 locații.",
+    "huntStopped": "Vânătoarea a fost oprită.",
+    "testingAt": "Testare la ",
+    "openNow": "Deschis acum",
+    "closed": "❌ Închis",
+    "openNowCheck": "✅ Deschis acum",
+    "unlockedBySurvey": "Deblocat prin sondaj",
+    "takeSurveyToUnlock": "Completați sondajul pentru a debloca",
+    "huntStartedTimer": "Vânătoarea a început!",
+    "timeToFind": "Timp pentru a găsi această locație",
+    "greatJob": "Felicitări pentru explorare!",
+    "youFound": "Ai găsit {{name}}!",
+    "funFact": "Curiozitate",
+    "about": "Despre",
+    "hours": "Ore",
+    "price": "Preț",
+    "tips": "Sfaturi",
+    "menuHighlights": "Meniu (repere)",
+    "note": "Notă",
+    "description": "Descriere",
+    "amenities": "Facilități",
+    "book": "Contact",
+    "langChangedRo": "Limba a fost schimbată în Română",
+    "langChangedEn": "Limbă schimbată în Engleză",
+    "survey": "Sondaj"
+  }
+}

@@ -3488,12 +3488,143 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
-// Language Toggle (Basic implementation)
+// Language Toggle
 const langToggle = document.querySelector('.lang-toggle');
 let currentLang = 'en';
 
-// Minimal set of translations for Romanian
-const I18N = {
+// --- i18next Internationalization ---
+// i18next and i18nextHttpBackend are loaded via CDN before this script.
+let i18nextReady = false;
+if (typeof i18next !== 'undefined' && typeof i18nextHttpBackend !== 'undefined') {
+    i18next
+        .use(i18nextHttpBackend)
+        .init({
+            lng: 'en',
+            fallbackLng: 'en',
+            debug: false,
+            backend: {
+                loadPath: '/locales/{{lng}}/translation.json'
+            }
+        })
+        .then(() => { i18nextReady = true; })
+        .catch(err => console.warn('[i18next] init failed:', err));
+}
+
+// Maps English notification strings to i18next keys so translateMessage() can
+// look them up without requiring every call-site to be updated.
+const MSG_KEY_MAP = {
+    'Please start the hunt first!': 'msg.startHuntFirst',
+    'Getting your location...': 'msg.gettingLocation',
+    'Could not get your location. Please enable location services.': 'msg.locationError',
+    'Geolocation is not supported by your browser.': 'msg.geolocationNotSupported',
+    'Testing mode enabled! Click on any location to mark it as found.': 'msg.testingModeEnabled',
+    'Testing mode disabled.': 'msg.testingModeDisabled',
+    'Camera access is not supported on this browser. Please use a modern browser with HTTPS.': 'msg.noCameraSupport',
+    'Could not access camera. Testing mode allows manual selection.': 'msg.cameraAccessError',
+    'QR Code scanned successfully!': 'msg.qrSuccess',
+    'You already found this location!': 'msg.alreadyFound',
+    "QR code not recognized. Make sure you're at a treasure hunt location.": 'msg.qrNotRecognized',
+    'No locations nearby. Keep exploring!': 'msg.noLocationsNearby',
+    'Unable to access camera. ': 'msg.cameraAccessDenied',
+    'Please allow camera access to proceed.': 'msg.allowCameraAccess',
+    'No camera found on this device.': 'msg.noCameraFound',
+    'Camera not supported on this browser. Please use HTTPS.': 'msg.cameraNotSupported',
+    'Please check your camera settings.': 'msg.checkCameraSettings',
+    'Camera requires HTTPS. Please access the site via https://.': 'msg.cameraRequiresHttps',
+    'Map loaded with all locations!': 'msg.mapLoaded',
+    'Map loaded successfully!': 'msg.mapLoadedSuccess',
+    'Select a QR Code to Scan:': 'msg.selectQrCode',
+    'Treasure hunt started! Find all 8 locations.': 'msg.huntStarted',
+    'Treasure hunt stopped.': 'msg.huntStopped',
+    'Open now': 'msg.openNow',
+    '❌ Closed': 'msg.closed',
+    '✅ Open now': 'msg.openNowCheck',
+    'Unlocked by survey': 'msg.unlockedBySurvey',
+    'Take the survey to unlock': 'msg.takeSurveyToUnlock',
+    'Interactive map showing all locations, restaurants, and accommodations': 'map.description',
+    'Interactive Map': 'map.mapLabel',
+    '📍 Locations': 'map.locations',
+    '🍽️ Restaurants': 'map.restaurants',
+    '🏨 Accommodations': 'map.accommodations',
+    'In production, this displays a fully interactive map powered by OpenStreetMap/Leaflet': 'map.infoLine',
+    'Initializing Camera...': 'ar.loading',
+    'Survey': 'msg.survey'
+};
+
+// Translates a known English message string using i18next.
+function translateMessage(message) {
+    if (!message || !i18nextReady || currentLang === 'en') return message;
+    const key = MSG_KEY_MAP[String(message).trim()];
+    if (key) return i18next.t(key);
+    return message;
+}
+
+// Applies the given language to all translatable elements in the DOM.
+function applyTranslations(lang) {
+    if (!i18nextReady) return;
+    i18next.changeLanguage(lang).then(() => {
+        // Update <html lang="…">
+        document.documentElement.lang = lang;
+
+        // Update every element that carries a data-i18n key
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+            el.textContent = i18next.t(el.dataset.i18n);
+        });
+
+        // Update placeholder text for inputs that carry a data-i18n-placeholder key
+        document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+            el.placeholder = i18next.t(el.dataset.i18nPlaceholder);
+        });
+
+        // Progress text contains dynamic count/total spans that must stay intact
+        const progressText = document.querySelector('.progress-text');
+        if (progressText) {
+            const cnt = (progressCount || { textContent: '0' }).textContent;
+            const tot = (progressTotal || { textContent: '8' }).textContent;
+            progressText.innerHTML =
+                `<span id="progress-count">${cnt}</span> / <span id="progress-total">${tot}</span> ${i18next.t('hunt.locationsSuffix')}`;
+        }
+
+        // AR / hunt buttons carry icons, so we rebuild their innerHTML
+        if (startHuntBtn) startHuntBtn.innerHTML = `<i class="fas fa-play"></i> ${i18next.t('hunt.startBtn')}`;
+        if (resetHuntBtn) resetHuntBtn.innerHTML = `<i class="fas fa-redo"></i> ${i18next.t('hunt.resetBtn')}`;
+        if (scanQrBtn) scanQrBtn.innerHTML = `<i class="fas fa-qrcode"></i> ${i18next.t('hunt.scanBtn')}`;
+        if (useLocationBtn) useLocationBtn.innerHTML = `<i class="fas fa-map-marker-alt"></i> ${i18next.t('hunt.useLocation')}`;
+
+        // Language-toggle button label
+        const lt = document.querySelector('.lang-toggle');
+        if (lt) lt.innerHTML = `<i class="fas fa-globe"></i> ${lang.toUpperCase()}`;
+
+        // AR-modal text nodes (no data-i18n because they are updated dynamically)
+        const arLoadingP = document.querySelector('#ar-loading p');
+        if (arLoadingP) arLoadingP.textContent = i18next.t('ar.loading');
+        if (arHuntText) arHuntText.textContent = i18next.t('ar.huntBanner');
+    });
+}
+
+if (langToggle) {
+    langToggle.addEventListener('click', () => {
+        const newLang = currentLang === 'en' ? 'ro' : 'en';
+        currentLang = newLang;
+        applyTranslations(newLang);
+        showNotification(
+            i18nextReady
+                ? i18next.t(newLang === 'ro' ? 'msg.langChangedRo' : 'msg.langChangedEn')
+                : (newLang === 'ro' ? 'Limba a fost schimbată în Română' : 'Language changed to English'),
+            'info'
+        );
+    });
+}
+
+// keep a dummy block so the old I18N comment anchor below is not confused with anything
+const _i18nLegacyRemoved = true;
+
+// ---- LEGACY I18N BLOCK REMOVED ----
+// The I18N and MESSAGE_MAP objects that previously lived here have been
+// migrated to locales/en/translation.json and locales/ro/translation.json.
+// Use i18next.t('key') for all new translations.
+
+// ==================== Initialization ====================
     ro: {
         htmlLang: 'ro',
         logo: 'Descoperă Râșnov',

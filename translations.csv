@@ -1,0 +1,255 @@
+key,english,romanian
+nav.home,Discover Rasnov,Descoperă Râșnov
+nav.treasureHunt,Treasure Hunt,Vânătoare Comori
+nav.map,Map,Hartă
+nav.info,Info,Info
+header.logo,Discover Rasnov,Descoperă Râșnov
+header.guest,Guest,Oaspete
+hero.title,Welcome to Rasnov,Bun venit în Râșnov
+hero.subtitle,"Explore Historic Fortress, Stunning Nature & Romanian Culture","Explorați Cetatea istorică, natura uimitoare și cultura românească"
+hero.cta,Start Exploring,Începe Explorarea
+huntHero.title,Treasure Hunt,Vânătoare Comori
+huntHero.subtitle,Scan QR codes at 8 historic Rasnov locations to earn points!,Scanați coduri QR la 8 locații istorice din Râșnov pentru a câștiga puncte!
+tabs.locations,Locations,Locații
+tabs.restaurants,Restaurants,Restaurante
+tabs.accommodations,Places to Stay,Cazare
+tabs.leaderboard,Leaderboard,Clasament
+tabs.unlocks,Rewards,Recompense
+sections.topLocations,Top Locations to Visit,Cele mai bune locații de vizitat
+sections.bestRestaurants,Best Restaurants,Cele mai bune restaurante
+sections.placesToStay,Places to Stay,Locuri de cazare
+sections.interactiveMap,Interactive Map,Hartă Interactivă
+sections.essentialInfo,Essential Information,Informații esențiale
+sections.treasureHunt,Treasure Hunt,Vânătoare Comori
+sections.yourProgress,Your Progress,Progresul tău
+locations.fortress.title,Rasnov Fortress,Cetatea Râșnov
+locations.fortress.desc,A medieval citadel built by Teutonic Knights in the 13th century. Offers breathtaking panoramic views of the surrounding Carpathian Mountains.,O cetate medievală construită de Cavalerii Teutoni în secolul al XIII-lea. Oferă priveliști panoramice impresionante ale Munților Carpați.
+locations.fortress.time,2-3 hours,2-3 ore
+locations.fortress.ticket,20 RON,20 RON
+locations.dinoparc.title,Dino Parc,Dino Parc
+locations.dinoparc.desc,The largest dinosaur park in Southeast Europe with life-size animatronic dinosaurs. Perfect for families and children.,"Cel mai mare parc cu dinozauri din Europa de Sud-Est, cu dinozauri animatronici în mărime naturală. Ideal pentru familii și copii."
+locations.dinoparc.time,1-2 hours,1-2 ore
+locations.dinoparc.ticket,40 RON,40 RON
+locations.peak.title,Piatra Mica Peak,Piatra Mică
+locations.peak.desc,"Hiking trail to a stunning mountain peak. Accessible via cable car or hiking trail, offering spectacular mountain views.","Traseu de drumeție către un vârf montan impresionant. Accesibil cu telescaunul sau pe traseu, oferind priveliști spectaculoase."
+locations.peak.time,3-4 hours,3-4 ore
+locations.peak.ticket,Free (30 RON cable car),Gratuit (30 RON telescaun)
+locations.museum.title,Village Museum,Muzeul Satului
+locations.museum.desc,"Explore traditional Romanian rural life with authentic houses, tools, and artifacts from the region's history.","Explorează viața rurală tradițională românească cu case autentice, unelte și artefacte din istoria regiunii."
+locations.museum.time,1 hour,1 oră
+locations.museum.ticket,10 RON,10 RON
+locations.bran.title,Bran Castle,Castelul Bran
+locations.bran.desc,"Famous Dracula's Castle, just 15 minutes away. Gothic fortress with fascinating history and stunning architecture.","Faimosul Castel al lui Dracula, la doar 15 minute. Fortăreață gotică cu o istorie fascinantă și o arhitectură impresionantă."
+locations.bran.time,2 hours,2 ore
+locations.bran.ticket,45 RON,45 RON
+locations.poiana.title,Poiana Brasov Ski Resort,Stațiunea Poiana Brașov
+locations.poiana.desc,Premier ski resort nearby with 23km of slopes. Great for winter sports enthusiasts and summer hiking.,Stațiune de schi de top cu 23 km de pârtii. Excelentă pentru sporturi de iarnă și drumeții de vară.
+locations.poiana.time,Full day,Toată ziua
+locations.poiana.ticket,150 RON/day,150 RON/zi
+locations.brasov.title,Brasov Old Town,Centrul Istoric Brașov
+locations.brasov.desc,"Medieval city center with Council Square, Black Church, and charming cobblestone streets. Only 15km away.","Centru medieval cu Piața Sfatului, Biserica Neagră și străzi pietruite pitorești. La doar 15 km."
+locations.brasov.time,3-4 hours,3-4 ore
+locations.brasov.ticket,Free,Gratuit
+locations.peles.title,Peles Castle,Castelul Peleș
+locations.peles.desc,Neo-Renaissance masterpiece in Sinaia. One of Europe's most beautiful castles with 160 lavishly decorated rooms.,"Capodoperă neo-renascentistă din Sinaia. Unul dintre cele mai frumoase castele din Europa, cu 160 de camere decorate."
+locations.peles.time,2-3 hours,2-3 ore
+locations.peles.ticket,50 RON,50 RON
+locations.national-park.title,Piatra Craiului National Park,Parcul Național Piatra Craiului
+locations.national-park.desc,"Protected natural area with dramatic limestone ridge. Excellent hiking, wildlife watching, and pristine nature.","Areal natural protejat cu creastă calcaroasă spectaculoasă. Potrivit pentru drumeții, observarea faunei și natura sălbatică."
+locations.national-park.time,Full day,Toată ziua
+locations.national-park.ticket,Free,Gratuit
+locations.bear-sanctuary.title,Libearty Bear Sanctuary,Sanctuarul pentru Urși Libearty
+locations.bear-sanctuary.desc,Europe's largest brown bear sanctuary. Home to rescued bears in natural habitat. Educational and ethical tourism.,Cel mai mare sanctuar pentru urși bruni din Europa. Urși salvați trăind în habitat natural. Turism educativ și etic.
+locations.bear-sanctuary.time,1-2 hours,1-2 ore
+locations.bear-sanctuary.ticket,25 RON,25 RON
+restaurants.cetate.title,Cetate Restaurant,Restaurant Cetate
+restaurants.cetate.desc,Traditional Romanian cuisine in the heart of the fortress. Try their famous sarmale and mici with polenta.,Bucătărie tradițională românească în inima cetății. Încercați celebrele sarmale și mici cu mămăligă.
+restaurants.cetate.cuisine,Romanian,Românesc
+restaurants.ceaun.title,La Ceaun,La Ceaun
+restaurants.ceaun.desc,Cozy tavern serving hearty mountain dishes. Their ciorbă (sour soup) and grilled trout are must-tries.,Han primitor cu mâncăruri montane consistente. Ciorbă și păstrăv la grătar sunt preparate obligatorii.
+restaurants.ceaun.cuisine,Traditional,Tradițional
+restaurants.pizzeria.title,Pizzeria Castello,Pizzeria Castello
+restaurants.pizzeria.desc,Italian pizzeria with a Romanian twist. Wood-fired pizzas and pasta dishes with local ingredients.,Pizzerie italiană cu influențe românești. Pizza la cuptor cu lemne și paste cu ingrediente locale.
+restaurants.pizzeria.cuisine,Italian,Italian
+restaurants.cafe.title,Cafe Central,Cafe Central
+restaurants.cafe.desc,"Modern cafe with excellent coffee, pastries, and light meals. Perfect for breakfast or afternoon break.","Cafenea modernă cu cafea excelentă, patiserie și mese ușoare. Perfectă pentru micul dejun sau o pauză."
+restaurants.cafe.cuisine,Cafe,Cafenea
+restaurants.belvedere-terrace.title,Belvedere Terrace,Terasă Belvedere
+restaurants.belvedere-terrace.desc,Restaurant with panoramic terrace. International cuisine with spectacular mountain views and sunset dining.,Restaurant cu terasă panoramică. Bucătărie internațională cu priveliști spectaculoase și cine la apus.
+restaurants.belvedere-terrace.cuisine,International,Internațional
+restaurants.grill-house.title,Grill House Rasnov,Grill House Rasnov
+restaurants.grill-house.desc,"BBQ specialist with outdoor grill. Famous for mixed grills, fresh salads, and local wines.","Specialist în BBQ cu grătar în aer liber. Faimos pentru grătare mixte, salate proaspete și vinuri locale."
+restaurants.grill-house.cuisine,BBQ/Grill,BBQ/Grătar
+restaurants.bistro.title,Bistro Rasnoveana,Bistro Rasnoveana
+restaurants.bistro.desc,"Casual bistro in town center. Daily specials, homemade desserts, and friendly atmosphere.","Bistro casual în centrul orașului. Meniuri zilnice, deserturi de casă și atmosferă prietenoasă."
+restaurants.bistro.cuisine,Bistro,Bistro
+restaurants.vegetarian.title,Vegetarian Haven,Vegetarian Haven
+restaurants.vegetarian.desc,"Plant-based restaurant with creative dishes. Vegan options, organic ingredients, and healthy bowls.","Restaurant pe bază de plante cu preparate creative. Opțiuni vegane, ingrediente organice și boluri sănătoase."
+restaurants.vegetarian.cuisine,Vegetarian,Vegetarian
+accommodations.ambient.title,Hotel Ambient,Hotel Ambient
+accommodations.ambient.desc,"Modern 4-star hotel with spa facilities, mountain views, and excellent breakfast. Close to fortress.","Hotel modern de 4 stele cu facilități spa, vedere la munte și micul dejun excelent. Aproape de cetate."
+accommodations.ambient.type,4 stars,4 stele
+accommodations.belvedere.title,Pension Belvedere,Pensiunea Belvedere
+accommodations.belvedere.desc,Family-run guesthouse with traditional Romanian hospitality. Homemade breakfast and stunning views.,Pensiune de familie cu ospitalitate tradițională românească. Micul dejun de casă și priveliști superbe.
+accommodations.belvedere.type,3 stars,3 stele
+accommodations.petre.title,Casa Petre,Casa Petre
+accommodations.petre.desc,Charming apartments in the old town. Fully equipped kitchens and authentic Romanian decor.,Apartamente fermecătoare în centrul vechi. Bucătării complet utilate și decor românesc autentic.
+accommodations.petre.type,Apartment,Apartament
+accommodations.hostel.title,Mountain Hostel,Hostel Montan
+accommodations.hostel.desc,"Budget-friendly hostel perfect for backpackers. Shared kitchen, common area, and organized hiking trips.","Hostel economic, ideal pentru backpackeri. Bucătărie comună, zonă de relaxare și excursii organizate."
+accommodations.hostel.type,Hostel,Hostel
+accommodations.villa.title,Villa Carpathia,Villa Carpathia
+accommodations.villa.desc,Luxury villa with private garden and pool. Perfect for families or groups seeking privacy and comfort.,Vilă de lux cu grădină privată și piscină. Perfectă pentru familii sau grupuri care caută intimitate.
+accommodations.villa.type,Villa,Vilă
+accommodations.boutique.title,Boutique Hotel Residence,Boutique Hotel Residence
+accommodations.boutique.desc,"Stylish boutique hotel with modern amenities. Rooftop bar, gym, and contemporary design throughout.","Hotel boutique stilat cu facilități moderne. Bar pe acoperiș, sală de sport și design contemporan."
+accommodations.boutique.type,4 stars,4 stele
+accommodations.cabins.title,Mountain Cabins,Căsuțe Montane
+accommodations.cabins.desc,Cozy wooden cabins in nature. Perfect for romantic getaways with fireplace and private terrace.,Căsuțe din lemn confortabile în natură. Perfecte pentru escapade romantice cu șemineu și terasă privată.
+accommodations.cabins.type,Cabin,Cabană
+accommodations.casa-maria.title,Casa Maria B&B,Casa Maria B&B
+accommodations.casa-maria.desc,Traditional bed and breakfast with local charm. Hearty homemade meals and personal service.,Pensiune tradițională cu farmec local. Mese bogate de casă și servicii personalizate.
+accommodations.casa-maria.type,B&B,B&B
+map.description,"Interactive map showing all locations, restaurants, and accommodations","Hartă interactivă care afișează toate locațiile, restaurantele și cazările"
+map.loadBtn,Load Map,Încarcă Harta
+map.mapLabel,Interactive Map,Hartă Interactivă
+map.locations,📍 Locations,📍 Locații
+map.restaurants,🍽️ Restaurants,🍽️ Restaurante
+map.accommodations,🏨 Accommodations,🏨 Cazări
+map.infoLine,"In production, this displays a fully interactive map powered by OpenStreetMap/Leaflet","În producție, aceasta afișează o hartă interactivă completă, bazată pe OpenStreetMap/Leaflet"
+info.emergency.title,Emergency,Urgență
+info.emergency.police,Police,Poliție
+info.emergency.medical,Medical,Medical
+info.emergency.touristInfo,Tourist Info,Info Turist
+info.transportation.title,Transportation,Transport
+info.transportation.busToBrasov,Bus to Brasov,Autobuz la Brașov
+info.transportation.taxi,Taxi,Taxi
+info.transportation.carRental,Car Rental,Închiriere Mașini
+info.language.title,Language,Limbă
+info.language.main,Main,Principal
+info.language.common,Common,Obișnuit
+info.language.tip,Tip,Sfat
+info.currency.title,Currency,Valută
+info.currency.currency,Currency,Valută
+info.currency.atms,ATMs,Bancomate
+info.currency.cards,Cards,Cărți
+info.hours.title,Opening Hours,Ore de Deschidere
+info.hours.fortress,Fortress,Cetate
+info.hours.shops,Shops,Magazine
+info.hours.restaurants,Restaurants,Restaurante
+info.visitTime.title,Best Time to Visit,Cel mai Bun Timp pentru Vizită
+info.visitTime.peak,Peak,Vârf
+info.visitTime.shoulder,Shoulder,Transițional
+info.visitTime.winter,Winter,Iarnă
+footer.aboutTitle,About Rasnov,Despre Râșnov
+footer.aboutText,"Historic town in Transylvania, Romania, known for its medieval fortress and stunning mountain scenery.","Oraș istoric din Transilvania, România, cunoscut pentru cetatea medievală și peisajele muntoase impresionante."
+footer.quickLinks,Quick Links,Linkuri rapide
+footer.contact,Contact,Contact
+footer.copyright,© 2026 Discover Rasnov. Made with ❤ for tourists.,© 2026 Descoperă Râșnov. Făcut cu ❤ pentru turiști.
+footer.home,Home,Acasă
+footer.treasureHunt,Treasure Hunt,Vânătoare
+footer.map,Map,Hartă
+footer.info,Info,Info
+hunt.title,Treasure Hunt,Vânătoare Comori
+hunt.subtitle,"Explore Rasnov in a fun, interactive way!",Explorează Râșnov într-un mod distractiv și interactiv!
+hunt.startBtn,Start Hunt,Începe Vânătoarea
+hunt.resetBtn,Reset Hunt,Resetează Vânătoarea
+hunt.scanBtn,Scan QR Code,Scanează QR
+hunt.useLocation,Use Location,Folosește Locația
+hunt.nextSiteLabel,Next Site: ,Locul următor: 
+hunt.tabHunt,Hunt,Vânătoare
+hunt.tabLeaderboard,Leaderboard,Clasament
+hunt.tabRewards,Rewards,Recompense
+hunt.yourProgress,Your Progress,Progresul tău
+hunt.locationsFound,{{count}} / {{total}} locations found,{{count}} / {{total}} locații găsite
+huntItems.fortress,Rasnov Fortress Gate,Poarta Cetății Râșnov
+huntItems.well,Ancient Well,Fântâna Antică
+huntItems.tower,Watch Tower,Turnul de Veghe
+huntItems.church,Old Church,Biserica Veche
+huntItems.museum,Village Museum,Muzeul Satului
+huntItems.peak,Mountain Peak,Vârful Muntelui
+huntItems.square,Town Square,Piața Orașului
+huntItems.dino,Dino Park Entrance,Intrarea Dino Parc
+leaderboard.title,🏆 Leaderboard,🏆 Clasament
+leaderboard.subtitle,Top Rasnov Explorers - Ranked by Points,Top Exploratori Râșnov - Clasați după Puncte
+leaderboard.yourRank,Your Rank:,Rangul tău:
+leaderboard.yourPoints,Your Points:,Punctele tale:
+leaderboard.totalPlayers,Total Players:,Total Jucători:
+leaderboard.colRank,#,#
+leaderboard.colPlayer,Player,Jucător
+leaderboard.colPoints,Points,Puncte
+leaderboard.colLocations,Locations,Locații
+leaderboard.colStatus,Status,Status
+leaderboard.loading,Loading leaderboard...,Se încarcă clasamentul...
+leaderboard.refresh,Refresh,Reîmprospătare
+modal.qr.title,Scan QR Code,Scanează codul QR
+modal.qr.help,Point your camera at a QR code at any treasure hunt location,Îndreptați camera către un cod QR la una dintre locațiile vânătorii
+modal.welcome.title,Welcome to Rasnov!,Bun venit în Râșnov!
+modal.welcome.continue,Continue Hunt,Continuă Vânătoarea
+modal.discovery.title,Location Found!,Locație Găsită!
+modal.discovery.continue,Continue Hunt,Continuă Vânătoarea
+modal.firstDiscovery.title,🎉 Congratulations!,🎉 Felicitări!
+modal.firstDiscovery.message,You found your first location! Add your name to appear on the leaderboard.,Ai găsit prima locație! Adaugă-ți numele pentru a apărea pe clasament.
+modal.firstDiscovery.placeholder,Your name,Numele tău
+modal.firstDiscovery.save,Save Name,Salvează Numele
+modal.firstDiscovery.skip,Skip for now,Sari deocamdată
+modal.survey.title,Quick Survey,Sondaj rapid
+modal.survey.message,Would you like to take a quick survey about your time in Rasnov? We look over every response to improve the site!,Doriți să completați un sondaj rapid despre timpul petrecut în Râșnov? Analizăm fiecare răspuns pentru a îmbunătăți site-ul!
+modal.survey.reward,🎁 Unlock a special site theme as a thank you!,🎁 Deblocați o temă specială ca mulțumire!
+modal.survey.yes,"Yes, take the survey!","Da, completez sondajul!"
+modal.survey.no,Maybe later,Poate mai târziu
+modal.survey.formTitle,Rasnov Survey,Sondaj Râșnov
+modal.survey.openTab,Open in new tab ↗,Deschide în filă nouă ↗
+ar.loading,Initializing Camera...,Se inițializează camera...
+ar.huntBanner,Find Grizzly and take a picture!,Găsește Grizzly și fă o poză!
+ar.tapToPlace,Tap the glowing ring to place Grizzly,Atinge inelul luminos pentru a plasa Grizzly
+ar.testMode,Test Mode Active,Mod Testare Activ
+card.learnMore,Learn More,Aflați mai multe
+card.viewMenu,View Menu,Vezi Meniu
+card.checkAvailability,Check Availability,Verificați Disponibilitatea
+msg.startHuntFirst,Please start the hunt first!,Vă rugăm să porniți vânătoarea mai întâi!
+msg.gettingLocation,Getting your location...,Se obține locația dvs...
+msg.locationError,Could not get your location. Please enable location services.,Nu s-a putut obține locația. Activați serviciile de localizare.
+msg.geolocationNotSupported,Geolocation is not supported by your browser.,Geolocalizarea nu este acceptată de browserul dvs.
+msg.testingModeEnabled,Testing mode enabled! Click on any location to mark it as found.,Mod testare activat! Apăsați pe orice locație pentru a o marca ca găsită.
+msg.testingModeDisabled,Testing mode disabled.,Mod testare dezactivat.
+msg.noCameraSupport,Camera access is not supported on this browser. Please use a modern browser with HTTPS.,Accesul la cameră nu este acceptat de acest browser. Folosiți un browser modern cu HTTPS.
+msg.cameraAccessError,Could not access camera. Testing mode allows manual selection.,Nu se poate accesa camera. Modul testare permite selecție manuală.
+msg.qrSuccess,QR Code scanned successfully!,Cod QR scanat cu succes!
+msg.alreadyFound,You already found this location!,Ai găsit deja această locație!
+msg.qrNotRecognized,QR code not recognized. Make sure you're at a treasure hunt location.,Cod QR nerecunoscut. Asigurați-vă că sunteți la o locație a vânătorii.
+msg.noLocationsNearby,No locations nearby. Keep exploring!,Nicio locație în apropiere. Continuați explorarea!
+msg.cameraAccessDenied,Unable to access camera.,Imposibil de accesat camera.
+msg.allowCameraAccess,Please allow camera access to proceed.,Permiteți accesul la cameră pentru a continua.
+msg.noCameraFound,No camera found on this device.,Nu s-a găsit nicio cameră pe acest dispozitiv.
+msg.cameraNotSupported,Camera not supported on this browser. Please use HTTPS.,Camera nu este acceptată de acest browser. Folosiți HTTPS.
+msg.checkCameraSettings,Please check your camera settings.,Verificați setările camerei.
+msg.cameraRequiresHttps,Camera requires HTTPS. Please access the site via https://.,Camera necesită HTTPS. Accesați site-ul prin https://.
+msg.mapLoaded,Map loaded with all locations!,Harta încărcată cu toate locațiile!
+msg.mapLoadedSuccess,Map loaded successfully!,Harta a fost încărcată cu succes!
+msg.selectQrCode,Select a QR Code to Scan:,Selectați un cod QR pentru scanare:
+msg.huntStarted,Treasure hunt started! Find all 8 locations.,Vânătoarea a început! Găsiți toate cele 8 locații.
+msg.huntStopped,Treasure hunt stopped.,Vânătoarea a fost oprită.
+msg.testingAt,Testing at ,Testare la 
+msg.openNow,Open now,Deschis acum
+msg.closed,❌ Closed,❌ Închis
+msg.openNowCheck,✅ Open now,✅ Deschis acum
+msg.unlockedBySurvey,Unlocked by survey,Deblocat prin sondaj
+msg.takeSurveyToUnlock,Take the survey to unlock,Completați sondajul pentru a debloca
+msg.huntStartedTimer,Hunt Started!,Vânătoarea a început!
+msg.timeToFind,Time to find this location,Timp pentru a găsi această locație
+msg.greatJob,Great job exploring Rasnov!,Felicitări pentru explorare!
+msg.youFound,You found {{name}}!,Ai găsit {{name}}!
+msg.funFact,Fun Fact,Curiozitate
+msg.about,About,Despre
+msg.hours,Hours,Ore
+msg.price,Price,Preț
+msg.tips,Tips,Sfaturi
+msg.menuHighlights,Menu Highlights,Meniu (repere)
+msg.note,Note,Notă
+msg.description,Description,Descriere
+msg.amenities,Amenities,Facilități
+msg.book,Book,Contact
+msg.langChangedRo,Limba a fost schimbată în Română,Limba a fost schimbată în Română
+msg.langChangedEn,Language changed to English,Limbă schimbată în Engleză
+msg.survey,Survey,Sondaj
