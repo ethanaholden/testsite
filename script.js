@@ -1127,7 +1127,7 @@ function startPhotoCapture(locationKey) {
     if (titleEl) titleEl.textContent = `📸 ${localizedName}`;
 
     const helpEl = document.getElementById('photo-capture-help');
-    if (helpEl) helpEl.textContent = 'Now take a picture of this site!';
+    if (helpEl) helpEl.textContent = t('modal.photo.help');
 
     // Reset capture button state
     const btn = document.getElementById('photo-capture-btn');
@@ -3637,6 +3637,8 @@ document.addEventListener('languageChanged', (e) => {
         langToggle.innerHTML = `<i class="fas fa-globe"></i> ${currentLang.toUpperCase()}`;
     }
     refreshDynamicTranslations();
+    // Re-render the unlocks/collage tab so translated collage labels update
+    renderUnlocksTab();
 });
 
 if (langToggle) {
@@ -3826,7 +3828,7 @@ function buildCollageHTML(totalFound) {
     if (photoCells.length === 0) {
         cellsHTML = `<div class="collage-empty-state">
             <span class="collage-empty-icon">📷</span>
-            <p>Your photos will appear here as you explore Rasnov!</p>
+            <p>${escapeHtml(t('modal.collage.empty_state'))}</p>
         </div>`;
     } else {
         cellsHTML = photoCells.map((key, i) => {
@@ -3842,9 +3844,9 @@ function buildCollageHTML(totalFound) {
     // Style toggle buttons
     const styleToggleHTML = `
         <div class="collage-style-toggle">
-            <button class="collage-style-btn ${collageStyle === 'postit' ? 'active' : ''}" onclick="setCollageStyle('postit')">📌 Post-it</button>
-            <button class="collage-style-btn ${collageStyle === 'hex' ? 'active' : ''}" onclick="setCollageStyle('hex')">⬡ Hexagons</button>
-            <button class="collage-style-btn ${collageStyle === 'grid' ? 'active' : ''}" onclick="setCollageStyle('grid')">⊞ Grid</button>
+            <button class="collage-style-btn ${collageStyle === 'postit' ? 'active' : ''}" onclick="setCollageStyle('postit')">${escapeHtml(t('modal.collage.style_postit'))}</button>
+            <button class="collage-style-btn ${collageStyle === 'hex' ? 'active' : ''}" onclick="setCollageStyle('hex')">${escapeHtml(t('modal.collage.style_hex'))}</button>
+            <button class="collage-style-btn ${collageStyle === 'grid' ? 'active' : ''}" onclick="setCollageStyle('grid')">${escapeHtml(t('modal.collage.style_grid'))}</button>
         </div>`;
 
     const shareText = encodeURIComponent('Check out my Rasnov exploration! #discoverrasnov');
@@ -3862,7 +3864,7 @@ function buildCollageHTML(totalFound) {
     return `<div class="collage-wrapper ${borderClass} ${styleClass}">
         ${tierLabelHTML}
         <div class="collage-title-row">
-            <span class="collage-board-title">📍 My Rasnov Memories</span>
+            <span class="collage-board-title">${escapeHtml(t('modal.collage.board_title'))}</span>
         </div>
         ${styleToggleHTML}
         <div class="collage-grid">${cellsHTML}</div>

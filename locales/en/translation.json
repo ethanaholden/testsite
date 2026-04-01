@@ -314,7 +314,7 @@
     },
     "photo": {
       "title": "📸 Capture This Location",
-      "help": "Take a photo to add to your Rasnov collage!",
+      "help": "Now take a picture of this site!",
       "skip": "Skip for now"
     },
     "first_discovery": {
@@ -336,7 +336,12 @@
       "open_tab": "Open in new tab ↗"
     },
     "collage": {
-      "view": "View My Collage"
+      "view": "View My Collage",
+      "board_title": "📍 My Rasnov Memories",
+      "empty_state": "Your photos will appear here as you explore Rasnov!",
+      "style_postit": "📌 Post-it",
+      "style_hex": "⬡ Hexagons",
+      "style_grid": "⊞ Grid"
     }
   },
   "ar": {

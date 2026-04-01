@@ -314,7 +314,7 @@
     },
     "photo": {
       "title": "📸 Surprinde această locație",
-      "help": "Fă o poză pentru colajul tău Râșnov!",
+      "help": "Acum fă o poză acestui loc!",
       "skip": "Sari deocamdată"
     },
     "first_discovery": {
@@ -336,7 +336,12 @@
       "open_tab": "Deschide în filă nouă ↗"
     },
     "collage": {
-      "view": "Vezi Colajul Meu"
+      "view": "Vezi Colajul Meu",
+      "board_title": "📍 Amintirile Mele din Râșnov",
+      "empty_state": "Pozele tale vor apărea aici pe măsură ce explorezi Râșnovul!",
+      "style_postit": "📌 Post-it",
+      "style_hex": "⬡ Hexagoane",
+      "style_grid": "⊞ Grilă"
     }
   },
   "ar": {
