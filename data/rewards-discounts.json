@@ -1,0 +1,41 @@
+{
+  "order": ["cafe", "dino", "fortress", "souvenir"],
+  "discounts": {
+    "cafe": {
+      "emoji": "☕",
+      "pointsRequired": 20,
+      "name": "10% off at local cafés",
+      "name_ro": "10% reducere la cafenelele locale",
+      "description": "Show your progress to any participating café in Rasnov old town.",
+      "description_ro": "Arată-ți progresul la orice cafenea participantă din centrul vechi al Râșnovului.",
+      "code": "RASNOV-CAFE-10"
+    },
+    "dino": {
+      "emoji": "🦕",
+      "pointsRequired": 40,
+      "name": "Free Dino Park upgrade",
+      "name_ro": "Upgrade gratuit la Dino Park",
+      "description": "Upgrade your Dino Park ticket to premium for free.",
+      "description_ro": "Upgradează biletul tău Dino Park la premium gratuit.",
+      "code": "RASNOV-DINO-UPGRADE"
+    },
+    "fortress": {
+      "emoji": "🏰",
+      "pointsRequired": 60,
+      "name": "Free fortress audio guide",
+      "name_ro": "Ghid audio gratuit la cetate",
+      "description": "Download the Rasnov Fortress audio guide at no charge.",
+      "description_ro": "Descarcă ghidul audio al Cetății Râșnov gratuit.",
+      "code": "RASNOV-FORTRESS-AUDIO"
+    },
+    "souvenir": {
+      "emoji": "🎁",
+      "pointsRequired": 80,
+      "name": "Rasnov explorer souvenir",
+      "name_ro": "Suvenir de explorator Râșnov",
+      "description": "Collect a free Rasnov explorer pin from the tourism office.",
+      "description_ro": "Ridică un pin gratuit de explorator Râșnov de la biroul de turism.",
+      "code": "RASNOV-EXPLORER-PIN"
+    }
+  }
+}

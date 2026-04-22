@@ -188,7 +188,7 @@ rewards.collageTitle,Your Rasnov Collage,Colajul tău din Râșnov
 rewards.collageIntro,"Your memories from exploring Rasnov. Earn a silver frame at 6 places and a gold frame at 10.","Amintirile tale din explorarea Râșnovului. Câștigă un cadru de argint la 6 locuri și unul de aur la 10."
 rewards.apply,Apply,Aplică
 rewards.unlocked,✓ Unlocked!,✓ Deblocat!
-rewards.findPlaces,🔒 Find {{count}} places,🔒 Găsește {{count}} locuri
+rewards.findPoints,🔒 Reach {{count}} points,🔒 Ajungi la {{count}} puncte
 rewards.goldCollage,Gold Collage,Colaj de Aur
 rewards.silverCollage,Silver Collage,Colaj de Argint
 rewards.collageEmpty,Scan a location QR code and take your first photo to start building your collage!,Scanați un cod QR la o locație și faceți prima fotografie pentru a construi colajul!
@@ -202,6 +202,10 @@ rewards.download,📥 Download,📥 Descarcă
 rewards.share,📤 Share,📤 Distribuie
 rewards.journeyTitle,🗺️ My Rasnov Journey,🗺️ Călătoria mea în Râșnov
 rewards.photoSaved,Photo saved to your collage!,Fotografie salvată în colajul tău!
+rewards.revealCode,Reveal code,Afișează codul
+rewards.revealingCode,Revealing code...,Se afișează codul...
+rewards.codeRevealError,Could not reveal discount code right now.,Codul reducerii nu poate fi afișat acum.
+rewards.codeLocked,Discount code is still locked.,Codul reducerii este încă blocat.
 themes.default.name,Mountain Blue,Albastru Montan
 themes.default.description,The classic Rasnov look.,Aspectul clasic din Râșnov.
 themes.forest.name,Forest Green,Verde Pădure
@@ -210,14 +214,6 @@ themes.sunset.name,Sunset Glow,Strălucire la Apus
 themes.sunset.description,Warm glow of a Rasnov sunset.,Căldura unui apus din Râșnov.
 themes.survey.name,Survey Supporter,Susținător Sondaj
 themes.survey.description,Unlocked by starting the Rasnov survey. Thank you for your feedback!,Deblocat prin participarea la sondajul din Râșnov. Mulțumim pentru feedback!
-discounts.cafe.name,10% off at local cafés,10% reducere la cafenelele locale
-discounts.cafe.description,Show your progress to any participating café in Rasnov old town.,Arată-ți progresul la orice cafenea participantă din centrul vechi al Râșnovului.
-discounts.dino.name,Free Dino Park upgrade,Upgrade gratuit la Dino Park
-discounts.dino.description,Upgrade your Dino Park ticket to premium for free.,Upgradează biletul tău Dino Park la premium gratuit.
-discounts.fortress.name,Free fortress audio guide,Ghid audio gratuit la cetate
-discounts.fortress.description,Download the Rasnov Fortress audio guide at no charge.,Descarcă ghidul audio al Cetății Râșnov gratuit.
-discounts.souvenir.name,Rasnov explorer souvenir,Suvenir de explorator Râșnov
-discounts.souvenir.description,Collect a free Rasnov explorer pin from the tourism office.,Ridică un pin gratuit de explorator Râșnov de la biroul de turism.
 messages.startHuntFirst,Please start the hunt first!,Vă rugăm să porniți vânătoarea mai întâi!
 messages.gettingLocation,Getting your location...,Se obține locația dvs...
 messages.locationError,Could not get your location. Please enable location services.,Nu s-a putut obține locația. Activați serviciile de localizare.

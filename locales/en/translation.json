@@ -226,24 +226,6 @@
       "description": "Unlocked by starting the Rasnov survey. Thank you for your feedback!"
     }
   },
-  "discounts": {
-    "cafe": {
-      "name": "10% off at local cafés",
-      "description": "Show your progress to any participating café in Rasnov old town."
-    },
-    "dino": {
-      "name": "Free Dino Park upgrade",
-      "description": "Upgrade your Dino Park ticket to premium for free."
-    },
-    "fortress": {
-      "name": "Free fortress audio guide",
-      "description": "Download the Rasnov Fortress audio guide at no charge."
-    },
-    "souvenir": {
-      "name": "Rasnov explorer souvenir",
-      "description": "Collect a free Rasnov explorer pin from the tourism office."
-    }
-  },
   "rewards": {
     "title": "Rewards",
     "themeUnlocks": "Theme Unlocks",
@@ -252,7 +234,6 @@
     "collageIntro": "Your memories from exploring Rasnov. Earn a silver frame at {{silver}} places and a gold frame at {{gold}}.",
     "apply": "Apply",
     "unlocked": "✓ Unlocked!",
-    "findPlaces": "🔒 Find {{count}} places",
     "goldCollage": "Gold Collage",
     "silverCollage": "Silver Collage",
     "collageEmpty": "Scan a location QR code and take your first photo to start building your collage!",
@@ -265,7 +246,12 @@
     "download": "📥 Download",
     "share": "📤 Share",
     "journeyTitle": "🗺️ My Rasnov Journey",
-    "photoSaved": "Photo saved to your collage!"
+    "photoSaved": "Photo saved to your collage!",
+    "findPoints": "🔒 Reach {{count}} points",
+    "revealCode": "Reveal code",
+    "revealingCode": "Revealing code...",
+    "codeRevealError": "Could not reveal discount code right now.",
+    "codeLocked": "Discount code is still locked."
   },
   "modals": {
     "qr": {

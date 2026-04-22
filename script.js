@@ -888,6 +888,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Hunt data loaded from data/scavenger-data.json at startup
 let huntLocations = {};
 let huntOrder = [];
+let rewardsDiscountsData = { order: [], discounts: {} };
 
 async function loadScavengerData() {
     try {
@@ -907,6 +908,22 @@ async function loadScavengerData() {
         console.log('✅ Loaded scavenger data from scavenger-data.json');
     } catch (e) {
         console.error('❌ Could not load scavenger data:', e.message);
+    }
+}
+
+async function loadRewardsDiscountsData() {
+    try {
+        const response = await fetch('/api/rewards/discounts');
+        if (!response.ok) throw new Error('Failed to fetch rewards discounts data');
+        const data = await response.json();
+        rewardsDiscountsData = {
+            order: Array.isArray(data.order) ? data.order : [],
+            discounts: (data && typeof data.discounts === 'object' && data.discounts) || {}
+        };
+        console.log('✅ Loaded rewards discounts data');
+    } catch (e) {
+        console.error('❌ Could not load rewards discounts data:', e.message);
+        rewardsDiscountsData = { order: [], discounts: {} };
     }
 }
 
@@ -4089,32 +4106,71 @@ const THEMES = [
 ];
 
 // ==================== Discounts System ====================
-const DISCOUNTS = [
-    {
-        emoji: '☕',
-        nameKey: 'discounts.cafe.name',
-        descriptionKey: 'discounts.cafe.description',
-        placesRequired: 2
-    },
-    {
-        emoji: '🦕',
-        nameKey: 'discounts.dino.name',
-        descriptionKey: 'discounts.dino.description',
-        placesRequired: 4
-    },
-    {
-        emoji: '🏰',
-        nameKey: 'discounts.fortress.name',
-        descriptionKey: 'discounts.fortress.description',
-        placesRequired: 6
-    },
-    {
-        emoji: '🎁',
-        nameKey: 'discounts.souvenir.name',
-        descriptionKey: 'discounts.souvenir.description',
-        placesRequired: 8
+function getOrderedDiscounts() {
+    if (!rewardsDiscountsData || !Array.isArray(rewardsDiscountsData.order)) return [];
+    const discounts = rewardsDiscountsData.discounts || {};
+    return rewardsDiscountsData.order
+        .map(id => ({ id, ...discounts[id] }))
+        .filter(d => d && typeof d.id === 'string');
+}
+
+function getDiscountCodeElementId(discountId) {
+    return `discount-code-${String(discountId).replace(/[^a-zA-Z0-9_-]/g, '')}`;
+}
+
+const DISCOUNT_CODE_REVEALED_FLAG = 'true';
+
+window.revealDiscountCode = async function(discountId) {
+    if (!currentUser || !currentUser.uuid) {
+        showNotification(t('messages.startHuntFirst'), 'warning');
+        return;
     }
-];
+
+    const discount = (rewardsDiscountsData.discounts || {})[discountId];
+    if (!discount) return;
+
+    const required = Number(discount.pointsRequired) || 0;
+    const userPoints = (currentUser && currentUser.totalPoints) || 0;
+    if (userPoints < required) {
+        showNotification(t('rewards.codeLocked'), 'warning');
+        return;
+    }
+
+    const codeEl = document.getElementById(getDiscountCodeElementId(discountId));
+    if (!codeEl) return;
+    if (codeEl.dataset.revealed === DISCOUNT_CODE_REVEALED_FLAG) return;
+
+    const previousText = codeEl.textContent;
+    codeEl.textContent = t('rewards.revealingCode');
+
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
+    try {
+        const response = await fetch(`/api/rewards/discounts/${encodeURIComponent(discountId)}/reveal`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ uuid: currentUser.uuid }),
+            signal: controller.signal
+        });
+        const responseText = await response.text();
+        let data;
+        try {
+            data = responseText ? JSON.parse(responseText) : {};
+        } catch (parseError) {
+            throw new Error(`Invalid response format: ${parseError.message}`);
+        }
+        if (!response.ok || !data.code) {
+            throw new Error(data.error || 'Failed to reveal code');
+        }
+        codeEl.textContent = data.code;
+        codeEl.dataset.revealed = DISCOUNT_CODE_REVEALED_FLAG;
+    } catch (e) {
+        codeEl.textContent = previousText || '';
+        showNotification(t('rewards.codeRevealError'), 'error');
+    } finally {
+        clearTimeout(timeoutId);
+    }
+};
 
 function applyTheme(themeId) {
     const theme = THEMES.find(t => t.id === themeId);
@@ -4655,7 +4711,6 @@ function renderUnlocksTab() {
     const userPoints = (currentUser && currentUser.totalPoints) || 0;
     const savedTheme = localStorage.getItem('rasnov_theme') || 'default';
     const surveyStarted = localStorage.getItem('rasnov_survey_started') === '1';
-    const totalFound = foundLocations.size + foundExtraLocations.size;
 
     // Compact one-line theme badges
     const themeBadgesHTML = THEMES.map(theme => {
@@ -4674,16 +4729,24 @@ function renderUnlocksTab() {
         </div>`;
     }).join('');
 
-    // Discounts
-    const discountsHTML = DISCOUNTS.map(d => {
-        const unlocked = totalFound >= d.placesRequired;
+    // Discounts (data-driven from rewards-discounts.json via API)
+    const discountsHTML = getOrderedDiscounts().map(d => {
+        const unlocked = userPoints >= ((Number(d.pointsRequired) || 0));
+        const codeId = getDiscountCodeElementId(d.id);
+        const name = localizedField(d, 'name') || d.name || '';
+        const desc = localizedField(d, 'description') || d.description || '';
         return `<div class="discount-card ${unlocked ? 'unlocked' : 'locked'}">
-            <div class="discount-emoji">${d.emoji}</div>
-            <div class="discount-name">${t(d.nameKey)}</div>
-            <div class="discount-desc">${t(d.descriptionKey)}</div>
-            <div class="discount-req">${unlocked ? t('rewards.unlocked') : t('rewards.findPlaces', {count: d.placesRequired})}</div>
+            <div class="discount-emoji">${escapeHtml(d.emoji || '🎁')}</div>
+            <div class="discount-name">${escapeHtml(name)}</div>
+            <div class="discount-desc">${escapeHtml(desc)}</div>
+            <div class="discount-req">${unlocked ? t('rewards.unlocked') : t('rewards.findPoints', {count: d.pointsRequired})}</div>
+            ${unlocked ? `
+                <button class="discount-reveal-btn" data-discount-id="${escapeHtml(String(d.id))}" aria-label="${escapeHtml(`${t('rewards.revealCode')}: ${name}`)}">${t('rewards.revealCode')}</button>
+                <div class="discount-code" id="${escapeHtml(codeId)}" aria-live="polite" aria-atomic="true"></div>
+            ` : ''}
         </div>`;
     }).join('');
+    const hasDiscounts = !!discountsHTML;
 
     container.innerHTML = `
         <h2 class="section-title">${t('rewards.title')}</h2>
@@ -4693,16 +4756,26 @@ function renderUnlocksTab() {
             <div class="theme-unlocks-row">${themeBadgesHTML}</div>
         </div>
 
+        ${hasDiscounts ? `
         <div class="rewards-section">
             <div class="rewards-section-title">${t('rewards.discounts')}</div>
             <div class="discounts-grid">${discountsHTML}</div>
-        </div>
+        </div>` : ''}
 
         <div class="rewards-section">
             <div class="rewards-section-title">${t('rewards.collageTitle')}</div>
             <p class="collage-intro">${t('rewards.collageIntro')}</p>
             ${buildCollageHTML()}
         </div>`;
+
+    container.querySelectorAll('.discount-reveal-btn[data-discount-id]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const discountId = btn.getAttribute('data-discount-id');
+            if (discountId) {
+                revealDiscountCode(discountId);
+            }
+        });
+    });
 }
 
 // Initialize user account system
@@ -4714,8 +4787,8 @@ initializeUser();
     if (saved && saved !== 'default') applyTheme(saved);
 })();
 
-// Load scavenger data, then finish hunt-page initialization
-loadScavengerData().then(() => {
+// Load hunt + rewards data, then finish hunt-page initialization
+Promise.all([loadScavengerData(), loadRewardsDiscountsData()]).then(() => {
     // Hunt-page-only initialization
     if (isHuntPage) {
         // Initialize button states (before restoreHuntState which may re-enable them)
@@ -4734,7 +4807,7 @@ loadScavengerData().then(() => {
         handleURLParameters();
     }
 }).catch(e => {
-    console.error('Hunt initialization failed: scavenger data could not be loaded.', e);
+    console.error('Hunt initialization failed: required data could not be loaded.', e);
     if (isHuntPage) {
         showNotification('Could not load hunt data. Please refresh the page.', 'error');
     }

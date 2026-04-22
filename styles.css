@@ -2435,6 +2435,37 @@ body {
     margin-top: 0.2rem;
 }
 
+.discount-reveal-btn {
+    margin-top: 0.4rem;
+    border: none;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 999px;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.discount-reveal-btn:hover {
+    opacity: 0.9;
+}
+
+.discount-reveal-btn:focus-visible {
+    outline: 3px solid rgba(44, 95, 141, 0.35);
+    outline-offset: 2px;
+}
+
+.discount-code {
+    margin-top: 0.35rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #2c3e50;
+    word-break: break-word;
+}
+
 /* Collage — corkboard / scrapbook style */
 .collage-wrapper {
     border-radius: var(--border-radius);

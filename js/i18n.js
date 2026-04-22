@@ -102,7 +102,7 @@
             collageIntro: 'Your memories from exploring Rasnov. Earn a silver frame at 6 places and a gold frame at 10.',
             apply: 'Apply',
             unlocked: '✓ Unlocked!',
-            findPlaces: '🔒 Find {{count}} places',
+            findPoints: '🔒 Reach {{count}} points',
             goldCollage: 'Gold Collage',
             silverCollage: 'Silver Collage',
             collageEmpty: 'Scan a location QR code and take your first photo to start building your collage!',
@@ -115,7 +115,11 @@
             download: '📥 Download',
             share: '📤 Share',
             journeyTitle: '🗺️ My Rasnov Journey',
-            photoSaved: 'Photo saved to your collage!'
+            photoSaved: 'Photo saved to your collage!',
+            revealCode: 'Reveal code',
+            revealingCode: 'Revealing code...',
+            codeRevealError: 'Could not reveal discount code right now.',
+            codeLocked: 'Discount code is still locked.'
         }
     };
 
