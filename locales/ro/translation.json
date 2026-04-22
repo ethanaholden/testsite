@@ -226,24 +226,6 @@
       "description": "Deblocat prin participarea la sondajul din Râșnov. Mulțumim pentru feedback!"
     }
   },
-  "discounts": {
-    "cafe": {
-      "name": "10% reducere la cafenelele locale",
-      "description": "Arată-ți progresul la orice cafenea participantă din centrul vechi al Râșnovului."
-    },
-    "dino": {
-      "name": "Upgrade gratuit la Dino Park",
-      "description": "Upgradează biletul tău Dino Park la premium gratuit."
-    },
-    "fortress": {
-      "name": "Ghid audio gratuit la cetate",
-      "description": "Descarcă ghidul audio al Cetății Râșnov gratuit."
-    },
-    "souvenir": {
-      "name": "Suvenir de explorator Râșnov",
-      "description": "Ridică un pin gratuit de explorator Râșnov de la biroul de turism."
-    }
-  },
   "rewards": {
     "title": "Recompense",
     "themeUnlocks": "Teme Deblocate",
@@ -252,7 +234,6 @@
     "collageIntro": "Amintirile tale din explorarea Râșnovului. Câștigă un cadru de argint la 6 locuri și unul de aur la 10.",
     "apply": "Aplică",
     "unlocked": "✓ Deblocat!",
-    "findPlaces": "🔒 Găsește {{count}} locuri",
     "goldCollage": "Colaj de Aur",
     "silverCollage": "Colaj de Argint",
     "collageEmpty": "Scanați un cod QR la o locație și faceți prima fotografie pentru a construi colajul!",
@@ -265,7 +246,12 @@
     "download": "📥 Descarcă",
     "share": "📤 Distribuie",
     "journeyTitle": "🗺️ Călătoria mea în Râșnov",
-    "photoSaved": "Fotografie salvată în colajul tău!"
+    "photoSaved": "Fotografie salvată în colajul tău!",
+    "findPoints": "🔒 Ajungi la {{count}} puncte",
+    "revealCode": "Afișează codul",
+    "revealingCode": "Se afișează codul...",
+    "codeRevealError": "Codul reducerii nu poate fi afișat acum.",
+    "codeLocked": "Codul reducerii este încă blocat."
   },
   "modals": {
     "qr": {

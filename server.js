@@ -11,6 +11,9 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+app.get('/data/rewards-discounts.json', (_req, res) => {
+  res.status(404).send('Not found');
+});
 app.use(express.static(__dirname));
 
 // Persistent leaderboard file
@@ -100,6 +103,7 @@ const PHOTOS_DIR = path.join(__dirname, 'assets', 'place-photos');
 const PLACES_DATA_FILE = path.join(__dirname, 'data', 'places-data.json');
 const SAMPLE_DATA_FILE = path.join(__dirname, 'data', 'sample-places-data.json');
 const SCAVENGER_DATA_FILE = path.join(__dirname, 'data', 'scavenger-data.json');
+const REWARDS_DISCOUNTS_FILE = path.join(__dirname, 'data', 'rewards-discounts.json');
 let locationScanCounts = {};
 let scavengerLocationKeys = [];
 let locationScanSaveTimer = null;
@@ -274,6 +278,42 @@ function getPlacesData() {
     }
   }
   return null;
+}
+
+let rewardsDiscountsCache = null;
+let rewardsDiscountsMtime = null;
+function getRewardsDiscountsData() {
+  try {
+    if (!fs.existsSync(REWARDS_DISCOUNTS_FILE)) return null;
+    const stat = fs.statSync(REWARDS_DISCOUNTS_FILE);
+    if (rewardsDiscountsCache && rewardsDiscountsMtime === stat.mtimeMs) {
+      return rewardsDiscountsCache;
+    }
+    const parsed = JSON.parse(fs.readFileSync(REWARDS_DISCOUNTS_FILE, 'utf8'));
+    const rawDiscounts = (parsed && typeof parsed.discounts === 'object' && parsed.discounts) || {};
+    const normalizedDiscounts = {};
+    for (const [id, discount] of Object.entries(rawDiscounts)) {
+      if (!discount || typeof discount !== 'object') continue;
+      normalizedDiscounts[id] = {
+        emoji: typeof discount.emoji === 'string' ? discount.emoji : '🎁',
+        pointsRequired: Number.isFinite(discount.pointsRequired) ? Math.max(0, Math.floor(discount.pointsRequired)) : 0,
+        name: typeof discount.name === 'string' ? discount.name : '',
+        name_ro: typeof discount.name_ro === 'string' ? discount.name_ro : '',
+        description: typeof discount.description === 'string' ? discount.description : '',
+        description_ro: typeof discount.description_ro === 'string' ? discount.description_ro : '',
+        code: typeof discount.code === 'string' ? discount.code.trim() : ''
+      };
+    }
+    const order = Array.isArray(parsed.order)
+      ? parsed.order.filter(id => Object.prototype.hasOwnProperty.call(normalizedDiscounts, id))
+      : [];
+    rewardsDiscountsCache = { order, discounts: normalizedDiscounts };
+    rewardsDiscountsMtime = stat.mtimeMs;
+    return rewardsDiscountsCache;
+  } catch (e) {
+    console.warn('Could not load rewards discounts data:', e.message);
+    return null;
+  }
 }
 
 /**
@@ -681,6 +721,56 @@ app.get('/api/leaderboard', (req, res) => {
     }));
 
   res.json(leaderboard);
+});
+
+app.get('/api/rewards/discounts', (_req, res) => {
+  const discountsData = getRewardsDiscountsData();
+  if (!discountsData) {
+    return res.json({ order: [], discounts: {} });
+  }
+  const publicDiscounts = {};
+  for (const [id, d] of Object.entries(discountsData.discounts)) {
+    publicDiscounts[id] = {
+      emoji: d.emoji,
+      pointsRequired: d.pointsRequired,
+      name: d.name,
+      name_ro: d.name_ro,
+      description: d.description,
+      description_ro: d.description_ro
+    };
+  }
+  res.json({
+    order: discountsData.order,
+    discounts: publicDiscounts
+  });
+});
+
+app.post('/api/rewards/discounts/:discountId/reveal', (req, res) => {
+  const { discountId } = req.params;
+  const { uuid } = req.body || {};
+  if (!isValidUUID(uuid)) {
+    return res.status(400).json({ error: 'Invalid UUID format' });
+  }
+  const user = userAccounts[uuid];
+  if (!user) {
+    return res.status(404).json({ error: 'User not found' });
+  }
+  const discountsData = getRewardsDiscountsData();
+  if (!discountsData || !discountsData.order.length) {
+    return res.status(404).json({ error: 'Discounts not available' });
+  }
+  if (!discountsData.order.includes(discountId)) {
+    return res.status(404).json({ error: 'Discount not found' });
+  }
+  const discount = discountsData.discounts[discountId];
+  if (!discount || !discount.code) {
+    return res.status(404).json({ error: 'Discount code not configured' });
+  }
+  if (user.totalPoints < discount.pointsRequired) {
+    return res.status(403).json({ error: 'Discount is still locked' });
+  }
+  res.setHeader('Cache-Control', 'no-store');
+  return res.json({ discountId, code: discount.code });
 });
 
 // ==================== Static Routes ====================
