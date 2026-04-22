@@ -249,7 +249,7 @@
     "themeUnlocks": "Theme Unlocks",
     "discounts": "Discounts",
     "collageTitle": "Your Rasnov Collage",
-    "collageIntro": "Your memories from exploring Rasnov. Earn a silver frame at 6 places and a gold frame at 10.",
+    "collageIntro": "Your memories from exploring Rasnov. Earn a silver frame at {{silver}} places and a gold frame at {{gold}}.",
     "apply": "Apply",
     "unlocked": "✓ Unlocked!",
     "findPlaces": "🔒 Find {{count}} places",

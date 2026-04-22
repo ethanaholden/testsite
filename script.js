@@ -4135,7 +4135,7 @@ function getMainLocationsCount() {
 function getCollageTierThresholds() {
     const mainCount = getMainLocationsCount();
     return {
-        silver: Math.ceil(mainCount / 2),
+        silver: Math.floor(mainCount / 2),
         gold: mainCount
     };
 }
@@ -4182,7 +4182,7 @@ function setCollageStyle(style) {
 function buildCollageHTML() {
     const locationKeys = Object.keys(huntLocations);
     const mainFound = foundLocations.size;
-    const mainTotal = getMainLocationsCount();
+    const mainTotal = getMainLocationsCount();    const thresholds = getCollageTierThresholds();
     const tier = getCollageTier(mainFound);
     const borderClass = tier === 'gold' ? 'gold-border' : (tier === 'silver' ? 'silver-border' : '');
     const tierLabelHTML = tier
@@ -4215,7 +4215,7 @@ function buildCollageHTML() {
                 <span class="collage-empty-icon">📷</span>
                 <p>${t('rewards.collageEmpty')}</p>
             </div>
-            <div class="collage-footer">${mainFound} / ${mainTotal} ${t('rewards.collageTip')}</div>
+            <div class="collage-footer">${mainFound} / ${mainTotal} ${t('rewards.collageTip', { silver: thresholds.silver, gold: thresholds.gold })}</div>
         </div>`;
     }
 
@@ -4364,7 +4364,7 @@ async function buildCollageCanvas() {
     if (photoKeys.length === 0) return null;
 
     const mainFound = foundLocations.size;
-    const mainTotal = getMainLocationsCount();
+    const mainTotal = getMainLocationsCount();    const thresholds = getCollageTierThresholds();
     const tier = getCollageTier(mainFound);
     const footerText = `${photoKeys.length} photo${photoKeys.length !== 1 ? 's' : ''} \u00b7 ${mainFound}/${mainTotal} places \u00b7 #discoverrasnov`;
 

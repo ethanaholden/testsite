@@ -108,7 +108,7 @@
             collageEmpty: 'Scan a location QR code and take your first photo to start building your collage!',
             collageFooter: '📷 {{photos}} photo · {{found}} / {{total}} places explored',
             collageFooterPlural: '📷 {{photos}} photos · {{found}} / {{total}} places explored',
-            collageTip: '— find 6 for a silver collage, 10 for gold',
+            collageTip: '— find {{silver}} for a silver collage, {{gold}} for gold',
             polaroid: '📌 Polaroid',
             hexagon: '⬡ Hexagon',
             grid: '▦ Grid',
