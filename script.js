@@ -4118,6 +4118,8 @@ function getDiscountCodeElementId(discountId) {
     return `discount-code-${String(discountId).replace(/[^a-zA-Z0-9_-]/g, '')}`;
 }
 
+const DISCOUNT_CODE_REVEALED_FLAG = 'true';
+
 window.revealDiscountCode = async function(discountId) {
     if (!currentUser || !currentUser.uuid) {
         showNotification(t('messages.startHuntFirst'), 'warning');
@@ -4136,26 +4138,37 @@ window.revealDiscountCode = async function(discountId) {
 
     const codeEl = document.getElementById(getDiscountCodeElementId(discountId));
     if (!codeEl) return;
-    if (codeEl.dataset.revealed === '1') return;
+    if (codeEl.dataset.revealed === DISCOUNT_CODE_REVEALED_FLAG) return;
 
     const previousText = codeEl.textContent;
     codeEl.textContent = t('rewards.revealingCode');
 
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 10000);
     try {
         const response = await fetch(`/api/rewards/discounts/${encodeURIComponent(discountId)}/reveal`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ uuid: currentUser.uuid })
+            body: JSON.stringify({ uuid: currentUser.uuid }),
+            signal: controller.signal
         });
-        const data = await response.json().catch(() => ({}));
+        const responseText = await response.text();
+        let data;
+        try {
+            data = responseText ? JSON.parse(responseText) : {};
+        } catch (parseError) {
+            throw new Error(`Invalid response format: ${parseError.message}`);
+        }
         if (!response.ok || !data.code) {
             throw new Error(data.error || 'Failed to reveal code');
         }
         codeEl.textContent = data.code;
-        codeEl.dataset.revealed = '1';
+        codeEl.dataset.revealed = DISCOUNT_CODE_REVEALED_FLAG;
     } catch (e) {
         codeEl.textContent = previousText || '';
         showNotification(t('rewards.codeRevealError'), 'error');
+    } finally {
+        clearTimeout(timeoutId);
     }
 };
 
@@ -4728,8 +4741,8 @@ function renderUnlocksTab() {
             <div class="discount-desc">${escapeHtml(desc)}</div>
             <div class="discount-req">${unlocked ? t('rewards.unlocked') : t('rewards.findPoints', {count: d.pointsRequired})}</div>
             ${unlocked ? `
-                <button class="discount-reveal-btn" onclick="revealDiscountCode('${escapeHtml(d.id)}')">${t('rewards.revealCode')}</button>
-                <div class="discount-code" id="${codeId}"></div>
+                <button class="discount-reveal-btn" data-discount-id="${escapeHtml(String(d.id))}" aria-label="${escapeHtml(`${t('rewards.revealCode')}: ${name}`)}">${t('rewards.revealCode')}</button>
+                <div class="discount-code" id="${escapeHtml(codeId)}" aria-live="polite" aria-atomic="true"></div>
             ` : ''}
         </div>`;
     }).join('');
@@ -4754,6 +4767,15 @@ function renderUnlocksTab() {
             <p class="collage-intro">${t('rewards.collageIntro')}</p>
             ${buildCollageHTML()}
         </div>`;
+
+    container.querySelectorAll('.discount-reveal-btn[data-discount-id]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const discountId = btn.getAttribute('data-discount-id');
+            if (discountId) {
+                revealDiscountCode(discountId);
+            }
+        });
+    });
 }
 
 // Initialize user account system

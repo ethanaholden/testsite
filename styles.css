@@ -2452,6 +2452,11 @@ body {
     opacity: 0.9;
 }
 
+.discount-reveal-btn:focus-visible {
+    outline: 3px solid rgba(44, 95, 141, 0.35);
+    outline-offset: 2px;
+}
+
 .discount-code {
     margin-top: 0.35rem;
     font-size: 0.82rem;

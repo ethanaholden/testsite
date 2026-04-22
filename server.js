@@ -11,6 +11,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
+// Must be registered before express.static so raw discount codes are never exposed as static JSON.
 app.get('/data/rewards-discounts.json', (_req, res) => {
   res.status(404).send('Not found');
 });
@@ -305,7 +306,7 @@ function getRewardsDiscountsData() {
       };
     }
     const order = Array.isArray(parsed.order)
-      ? parsed.order.filter(id => Object.prototype.hasOwnProperty.call(normalizedDiscounts, id))
+      ? parsed.order.filter(id => Object.hasOwn(normalizedDiscounts, id))
       : [];
     rewardsDiscountsCache = { order, discounts: normalizedDiscounts };
     rewardsDiscountsMtime = stat.mtimeMs;
@@ -758,9 +759,6 @@ app.post('/api/rewards/discounts/:discountId/reveal', (req, res) => {
   const discountsData = getRewardsDiscountsData();
   if (!discountsData || !discountsData.order.length) {
     return res.status(404).json({ error: 'Discounts not available' });
-  }
-  if (!discountsData.order.includes(discountId)) {
-    return res.status(404).json({ error: 'Discount not found' });
   }
   const discount = discountsData.discounts[discountId];
   if (!discount || !discount.code) {
