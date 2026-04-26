@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "generate-translations": "node build-scripts/generate-translations.js",
     "fetch-data": "node build-scripts/fetch-places-data.js",
     "fetch-data-with-images": "node build-scripts/fetch-places-data.js --download-images",
     "download-photos": "node build-scripts/download-photos.js",
