@@ -760,9 +760,11 @@ function formatHuntTime(firstScanAt, lastLocationAt) {
     const elapsedMs = new Date(lastLocationAt) - new Date(firstScanAt);
     if (elapsedMs < 0) return '-';
     const totalSeconds = Math.floor(elapsedMs / 1000);
-    const hours = Math.floor(totalSeconds / 3600);
+    const days = Math.floor(totalSeconds / 86400);
+    const hours = Math.floor((totalSeconds % 86400) / 3600);
     const minutes = Math.floor((totalSeconds % 3600) / 60);
     const seconds = totalSeconds % 60;
+    if (days > 0) return `${days}d ${hours}h ${minutes}m ${seconds}s`;
     if (hours > 0) return `${hours}h ${minutes}m ${seconds}s`;
     if (minutes > 0) return `${minutes}m ${seconds}s`;
     return `${seconds}s`;
@@ -1802,12 +1804,21 @@ async function discoverLocation(locationKey, isFirstVisit = false) {
         }
         timerText = `<br><br><strong>⏱️ ${t('messages.huntStartedTimer')}</strong>`;
     } else {
-        // Subsequent locations - show time since last discovery
+        // Subsequent locations - show time since last discovery (only if < 10 days)
         const timeSinceLast = Math.floor((currentTime - lastDiscoveryTime) / 1000); // seconds
-        const minutes = Math.floor(timeSinceLast / 60);
-        const seconds = timeSinceLast % 60;
-        const timeString = minutes > 0 ? `${minutes}m ${seconds}s` : `${seconds}s`;
-        timerText = `<br><br><strong>⏱️ ${t('messages.timeToFind')}: ${timeString}</strong>`;
+        const TEN_DAYS_SECONDS = 10 * 24 * 3600;
+        if (timeSinceLast < TEN_DAYS_SECONDS) {
+            const days = Math.floor(timeSinceLast / 86400);
+            const hours = Math.floor((timeSinceLast % 86400) / 3600);
+            const minutes = Math.floor((timeSinceLast % 3600) / 60);
+            const seconds = timeSinceLast % 60;
+            let timeString;
+            if (days > 0) timeString = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            else if (hours > 0) timeString = `${hours}h ${minutes}m ${seconds}s`;
+            else if (minutes > 0) timeString = `${minutes}m ${seconds}s`;
+            else timeString = `${seconds}s`;
+            timerText = `<br><br><strong>⏱️ ${t('messages.timeToFind')}: ${timeString}</strong>`;
+        }
         lastDiscoveryTime = currentTime;
     }
     
