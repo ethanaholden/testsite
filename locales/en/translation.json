@@ -192,6 +192,13 @@
     "progress": {
       "title": "Your Progress",
       "locationsFound": "locations found"
+    },
+    "quiz": {
+      "answerToEarn": "Answer this question to earn points",
+      "submitAnswer": "Submit Answer",
+      "skip": "Skip (no points)",
+      "whichLocation": "Which of the following is this location?",
+      "whichBonus": "Which of the following is the bonus location?"
     }
   },
   "leaderboard": {
@@ -206,7 +213,8 @@
     "colLocations": "Locations",
     "colTime": "Time",
     "loading": "Loading leaderboard...",
-    "refresh": "Refresh"
+    "refresh": "Refresh",
+    "youBadge": "YOU"
   },
   "themes": {
     "default": {
@@ -341,6 +349,19 @@
     "moveCamera": "Move the camera around and find Grizzly!",
     "pointAtGround": "Point at the ground, then tap to place Grizzly!",
     "findGrizzly": "Find Grizzly and take a picture!",
+    "pointsEarned": "Points Earned: +{{points}}",
+    "completionBonus": "Completion Bonus: +{{points}}",
+    "totalPoints": "Total Points: {{points}}",
+    "yourPhoto": "Your photo:",
+    "bonusLocationDiscovered": "Bonus location discovered!",
+    "bonusPoints": "Bonus Points: +{{points}}",
+    "preparing": "⏳ Preparing…",
+    "cameraView": "Camera View",
+    "pointsShort": "points",
+    "completionBonusShort": "+{{points}} completion bonus!",
+    "failedLeaderboard": "Failed to load leaderboard",
+    "noPlayersYet": "No players on leaderboard yet. Start the hunt to join!",
+    "failedHuntData": "Could not load hunt data. Please refresh the page.",
     "langChangedRo": "Limba a fost schimbată în Română",
     "langChangedEn": "Language changed to English"
   },
@@ -373,6 +394,7 @@
     "visitWebsite": "Visit website",
     "viewOnMap": "View on Map",
     "callNow": "Call Now",
+    "viewDetails": "View Details",
     "price": {
       "inexpensive": "Inexpensive",
       "moderate": "Moderate",
@@ -384,5 +406,21 @@
     "message": "This website uses functional cookies only to save your progress. No tracking or advertising cookies are used.",
     "dismiss": "OK",
     "settings": "Cookie Settings"
+  },
+  "profile": {
+    "title": "Your Profile",
+    "name": "Name",
+    "totalPoints": "Total Points",
+    "locationsFound": "Locations Found",
+    "huntStatus": "Hunt Status",
+    "completed": "✅ Completed",
+    "inProgress": "🔄 In Progress",
+    "completedDate": "Completed Date",
+    "changeName": "Change name",
+    "enterName": "Enter your name",
+    "updateName": "Update Name",
+    "setName": "Set Name",
+    "resetProgress": "Reset Progress",
+    "areYouSure": "Are you sure?"
   }
 }

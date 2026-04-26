@@ -143,6 +143,11 @@ hunt.sectionSubtitle,Explore Rasnov in a fun, interactive way!,Explorați Râșn
 hunt.nextSite,Next Site:,Locul următor:
 hunt.progress.title,Your Progress,Progresul tău
 hunt.progress.locationsFound,locations found,locații găsite
+hunt.quiz.answerToEarn,Answer this question to earn points,Răspunde la întrebare pentru a câștiga puncte
+hunt.quiz.submitAnswer,Submit Answer,Trimite Răspunsul
+hunt.quiz.skip,Skip (no points),Sari (fără puncte)
+hunt.quiz.whichLocation,Which of the following is this location?,Care dintre acestea este această locație?
+hunt.quiz.whichBonus,Which of the following is the bonus location?,Care dintre acestea este locația bonus?
 leaderboard.title,🏆 Leaderboard,🏆 Clasament
 leaderboard.subtitle,Top Rasnov Explorers - Ranked by Points,Cei mai buni exploratori din Râșnov - Clasați după puncte
 leaderboard.yourRank,Your Rank:,Locul tău:
@@ -155,6 +160,7 @@ leaderboard.colLocations,Locations,Locații
 leaderboard.colTime,Time,Timp
 leaderboard.loading,Loading leaderboard...,Se încarcă clasamentul...
 leaderboard.refresh,Refresh,Actualizează
+leaderboard.youBadge,YOU,TU
 modals.qr.title,Scan QR Code,Scanează codul QR
 modals.qr.help,Point your camera at a QR code at any treasure hunt location,Îndreptați camera către un cod QR la una dintre locațiile vânătorii
 modals.welcome.title,Welcome to Rasnov!,Bun venit în Râșnov!
@@ -258,6 +264,19 @@ messages.pointAtGround,Point at the ground then tap to place Grizzly!,Îndreapt�
 messages.findGrizzly,Find Grizzly and take a picture!,Găsește Grizzly și fă o poză!
 messages.langChangedRo,Limba a fost schimbată în Română,Limba a fost schimbată în Română
 messages.langChangedEn,Language changed to English,Language changed to English
+messages.pointsEarned,Points Earned: +{{points}},Puncte câștigate: +{{points}}
+messages.completionBonus,Completion Bonus: +{{points}},Bonus finalizare: +{{points}}
+messages.totalPoints,Total Points: {{points}},Total puncte: {{points}}
+messages.yourPhoto,Your photo:,Fotografia ta:
+messages.bonusLocationDiscovered,Bonus location discovered!,Locație bonus descoperită!
+messages.bonusPoints,Bonus Points: +{{points}},Puncte bonus: +{{points}}
+messages.preparing,⏳ Preparing…,⏳ Se pregătește…
+messages.cameraView,Camera View,Vizualizare cameră
+messages.pointsShort,points,puncte
+messages.completionBonusShort,+{{points}} completion bonus!,+{{points}} bonus finalizare!
+messages.failedLeaderboard,Failed to load leaderboard,Clasamentul nu a putut fi încărcat
+messages.noPlayersYet,No players on leaderboard yet. Start the hunt to join!,Niciun jucător pe clasament. Începeți vânătoarea pentru a vă înscrie!
+messages.failedHuntData,Could not load hunt data. Please refresh the page.,Datele vânătorii nu au putut fi încărcate. Reîncărcați pagina.
 messages.bonusLocationsPrompt,Now find the bonus locations hidden around town!,Acum găsiți locațiile bonus ascunse prin oraș!
 details.about,About,Despre
 details.hours,Hours,Ore
@@ -285,7 +304,22 @@ cards.priceLevel,Price Level,Nivel de preț
 cards.visitWebsite,Visit website,Vizitează site-ul
 cards.viewOnMap,View on Map,Vizualizează pe hartă
 cards.callNow,Call Now,Sună acum
+cards.viewDetails,View Details,Vezi Detalii
 cards.price.inexpensive,Inexpensive,Ieftin
 cards.price.moderate,Moderate,Moderat
 cards.price.expensive,Expensive,Scump
 cards.price.veryExpensive,Very Expensive,Foarte scump
+profile.title,Your Profile,Profilul tău
+profile.name,Name,Nume
+profile.totalPoints,Total Points,Total puncte
+profile.locationsFound,Locations Found,Locații Găsite
+profile.huntStatus,Hunt Status,Starea vânătorii
+profile.completed,✅ Completed,✅ Finalizat
+profile.inProgress,🔄 In Progress,🔄 În desfășurare
+profile.completedDate,Completed Date,Data finalizării
+profile.changeName,Change name,Schimbă numele
+profile.enterName,Enter your name,Introduceți numele
+profile.updateName,Update Name,Actualizează Numele
+profile.setName,Set Name,Setează Numele
+profile.resetProgress,Reset Progress,Resetează Progresul
+profile.areYouSure,Are you sure?,Ești sigur?

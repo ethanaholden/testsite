@@ -253,12 +253,12 @@
                         <div class="discovery-icon">
                             <i class="fas fa-question-circle"></i>
                         </div>
-                        <h3>Answer this question to earn points</h3>
+                        <h3 data-i18n="hunt.quiz.answerToEarn">Answer this question to earn points</h3>
                         <p id="quiz-question"></p>
                         <div id="quiz-options" class="quiz-options" style="margin-top: 1rem; display: grid; gap: 0.75rem;"></div>
                         <div class="quiz-actions" style="margin-top: 1rem; display:flex; gap:0.75rem; justify-content:center;">
-                            <button class="cta-button" onclick="submitQuizAnswer()">Submit Answer</button>
-                            <button class="skip-btn" onclick="skipQuizQuestion()">Skip (no points)</button>
+                            <button class="cta-button" onclick="submitQuizAnswer()"><span data-i18n="hunt.quiz.submitAnswer">Submit Answer</span></button>
+                            <button class="skip-btn" onclick="skipQuizQuestion()" data-i18n="hunt.quiz.skip">Skip (no points)</button>
                         </div>
                     </div>
                 </div>

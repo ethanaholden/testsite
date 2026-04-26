@@ -337,19 +337,19 @@ function updateUserDisplayUI() {
         const name = escapeHtml(currentUser.displayName || 'Explorer');
         userElement.innerHTML = `
             <span class="user-name">${name}</span>
-            <span class="user-points">⭐ ${currentUser.totalPoints} pts</span>
+            <span class="user-points">⭐ ${currentUser.totalPoints} ${t('header.points')}</span>
         `;
     }
 }
 
 // Show a celebration notification when points are earned
 function showPointsNotification(points, bonusPoints = 0, locationName = '') {
-    let message = `<strong>+${points} points</strong>`;
+    let message = `<strong>+${points} ${t('messages.pointsShort')}</strong>`;
     if (locationName) {
-        message = `<strong>${locationName}</strong><br>+${points} points`;
+        message = `<strong>${locationName}</strong><br>+${points} ${t('messages.pointsShort')}`;
     }
     if (bonusPoints > 0) {
-        message += `<br><strong>+${bonusPoints} completion bonus!</strong>`;
+        message += `<br><strong>${t('messages.completionBonusShort', {points: bonusPoints})}</strong>`;
     }
     
     const notificationEl = document.createElement('div');
@@ -473,7 +473,7 @@ function showQuizModalForScannedLocation(locationKey, isFirstVisit = false) {
     selectedQuizAnswer = null;
 
     if (questionEl) {
-        questionEl.textContent = `Which of the following is this location?`;
+        questionEl.textContent = t('hunt.quiz.whichLocation');
     }
 
     const options = getQuizOptions(expectedName);
@@ -497,7 +497,7 @@ function showQuizModalForExtraLocation(extraInfo) {
 
     const questionEl = document.getElementById('quiz-question');
     if (questionEl) {
-        questionEl.textContent = `Which of the following is the bonus location?`;
+        questionEl.textContent = t('hunt.quiz.whichBonus');
     }
 
     const options = getQuizOptions(extraInfo.name);
@@ -559,41 +559,41 @@ function showUserProfile() {
     const profileHTML = `
         <div class="user-profile-modal">
             <div class="profile-header">
-                <h2>Your Profile</h2>
+                <h2>${t('profile.title')}</h2>
                 <button class="modal-close" onclick="closeModal('user-profile-modal')">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
             <div class="profile-content">
                 <div class="profile-stat">
-                    <span class="stat-label">Name</span>
+                    <span class="stat-label">${t('profile.name')}</span>
                     <span class="stat-value">${displayName}</span>
                 </div>
                 <div class="profile-stat">
-                    <span class="stat-label">Total Points</span>
+                    <span class="stat-label">${t('profile.totalPoints')}</span>
                     <span class="stat-value" style="color: #f39c12; font-weight: bold;">⭐ ${currentUser.totalPoints}</span>
                 </div>
                 <div class="profile-stat">
-                    <span class="stat-label">Locations Found</span>
+                    <span class="stat-label">${t('profile.locationsFound')}</span>
                     <span class="stat-value">${currentUser.locationsFound.length} / ${huntOrder.length}</span>
                 </div>
                 <div class="profile-stat">
-                    <span class="stat-label">Hunt Status</span>
-                    <span class="stat-value">${currentUser.completedAt ? '✅ Completed' : '🔄 In Progress'}</span>
+                    <span class="stat-label">${t('profile.huntStatus')}</span>
+                    <span class="stat-value">${currentUser.completedAt ? t('profile.completed') : t('profile.inProgress')}</span>
                 </div>
                 ${currentUser.completedAt ? `
                     <div class="profile-stat">
-                        <span class="stat-label">Completed Date</span>
+                        <span class="stat-label">${t('profile.completedDate')}</span>
                         <span class="stat-value">${new Date(currentUser.completedAt).toLocaleDateString()}</span>
                     </div>
                 ` : ''}
             </div>
             <div class="profile-actions">
                 <div style="margin-bottom: 1rem;">
-                    <input type="text" id="new-username" placeholder="${currentUser.hasSetName ? 'Change name' : 'Enter your name'}" maxlength="30" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; width: 100%;">
-                    <button class="card-button" style="width: 100%; margin-top: 0.5rem;" onclick="updateUsernameInModal()">${currentUser.hasSetName ? 'Update Name' : 'Set Name'}</button>
+                    <input type="text" id="new-username" placeholder="${currentUser.hasSetName ? t('profile.changeName') : t('profile.enterName')}" maxlength="30" style="padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; width: 100%;">
+                    <button class="card-button" style="width: 100%; margin-top: 0.5rem;" onclick="updateUsernameInModal()">${currentUser.hasSetName ? t('profile.updateName') : t('profile.setName')}</button>
                 </div>
-                <button class="card-button reset-progress-btn" id="reset-progress-btn" onclick="resetProgress()">Reset Progress</button>
+                <button class="card-button reset-progress-btn" id="reset-progress-btn" onclick="resetProgress()">${t('profile.resetProgress')}</button>
             </div>
         </div>
     `;
@@ -618,7 +618,7 @@ function resetProgress() {
     if (btn && btn.dataset.confirming !== 'true') {
         // First click: switch button to "Are you sure?" state
         btn.dataset.confirming = 'true';
-        btn.textContent = 'Are you sure?';
+        btn.textContent = t('profile.areYouSure');
         btn.style.background = 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)';
         btn.style.boxShadow = '0 4px 12px rgba(231, 76, 60, 0.4)';
         // Auto-revert after 4 seconds if not confirmed
@@ -626,7 +626,7 @@ function resetProgress() {
         resetConfirmTimeout = setTimeout(() => {
             if (btn && btn.dataset.confirming === 'true') {
                 btn.dataset.confirming = 'false';
-                btn.textContent = 'Reset Progress';
+                btn.textContent = t('profile.resetProgress');
                 btn.style.background = '';
                 btn.style.boxShadow = '';
             }
@@ -780,11 +780,11 @@ async function loadLeaderboard() {
         displayLeaderboard(leaderboard);
     } catch (error) {
         console.error('Error loading leaderboard:', error);
-        showNotification('Failed to load leaderboard', 'warning');
+        showNotification(t('messages.failedLeaderboard'), 'warning');
         document.getElementById('leaderboard-body').innerHTML = `
             <tr>
                 <td colspan="5" style="text-align: center; padding: 2rem; color: #999;">
-                    <i class="fas fa-exclamation-circle"></i> Failed to load leaderboard
+                    <i class="fas fa-exclamation-circle"></i> ${t('messages.failedLeaderboard')}
                 </td>
             </tr>
         `;
@@ -799,7 +799,7 @@ function displayLeaderboard(leaderboard) {
         leaderboardBody.innerHTML = `
             <tr>
                 <td colspan="5" style="text-align: center; padding: 2rem; color: #999;">
-                    <i class="fas fa-chart-line"></i> No players on leaderboard yet. Start the hunt to join!
+                    <i class="fas fa-chart-line"></i> ${t('messages.noPlayersYet')}
                 </td>
             </tr>
         `;
@@ -827,7 +827,7 @@ function displayLeaderboard(leaderboard) {
                 <td class="name-col">
                     <div class="player-name">
                         <span>${player.username}</span>
-                        ${isCurrentUser ? '<span class="player-badge">YOU</span>' : ''}
+                        ${isCurrentUser ? `<span class="player-badge">${t('leaderboard.youBadge')}</span>` : ''}
                     </div>
                 </td>
                 <td class="points-col">
@@ -1235,7 +1235,7 @@ if (resetHuntBtn) resetHuntBtn.addEventListener('click', () => {
     if (resetHuntBtn.dataset.confirming !== 'true') {
         // First click: switch to "Are you sure?" state
         resetHuntBtn.dataset.confirming = 'true';
-        resetHuntBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i> Are you sure?';
+        resetHuntBtn.innerHTML = `<i class="fas fa-exclamation-triangle"></i> ${t('profile.areYouSure')}`;
         resetHuntBtn.style.background = 'linear-gradient(135deg, #e74c3c 0%, #c0392b 100%)';
         resetHuntBtn.style.color = 'white';
         resetHuntBtn.style.borderColor = '#e74c3c';
@@ -1243,7 +1243,7 @@ if (resetHuntBtn) resetHuntBtn.addEventListener('click', () => {
         resetHuntConfirmTimeout = setTimeout(() => {
             if (resetHuntBtn.dataset.confirming === 'true') {
                 resetHuntBtn.dataset.confirming = 'false';
-                resetHuntBtn.innerHTML = '<i class="fas fa-redo"></i> Reset Hunt';
+                resetHuntBtn.innerHTML = `<i class="fas fa-redo"></i> ${t('hunt.resetHunt')}`;
                 resetHuntBtn.style.background = '';
                 resetHuntBtn.style.color = '';
                 resetHuntBtn.style.borderColor = '';
@@ -1254,7 +1254,7 @@ if (resetHuntBtn) resetHuntBtn.addEventListener('click', () => {
 
     // Second click: execute reset
     resetHuntBtn.dataset.confirming = 'false';
-    resetHuntBtn.innerHTML = '<i class="fas fa-redo"></i> Reset Hunt';
+    resetHuntBtn.innerHTML = `<i class="fas fa-redo"></i> ${t('hunt.resetHunt')}`;
     resetHuntBtn.style.background = '';
     resetHuntBtn.style.color = '';
     resetHuntBtn.style.borderColor = '';
@@ -1457,8 +1457,8 @@ function captureLocationPhoto() {
         // Update discovery modal photo section if still open
         const photoSection = document.getElementById('discovery-photo-section');
         if (photoSection) {
-            photoSection.innerHTML = `<p class="ar-photo-label">Your photo:</p>
-                <img src="${dataUrl}" class="ar-captured-photo" alt="Your photo at ${escapeHtml(localizedName)}">`;
+            photoSection.innerHTML = `<p class="ar-photo-label">${t('messages.yourPhoto')}</p>
+                <img src="${dataUrl}" class="ar-captured-photo" alt="${t('messages.yourPhoto')} ${escapeHtml(localizedName)}">`;
         }
 
         showNotification(t('rewards.photoSaved'), 'success');
@@ -1490,7 +1490,7 @@ function closePhotoCapture() {
             const photoSection = document.getElementById('discovery-photo-section');
             if (photoSection) {
                 if (savedPhoto && savedPhoto.startsWith('data:image/jpeg;base64,')) {
-                    photoSection.innerHTML = `<p class="ar-photo-label">Your photo:</p><img src="${savedPhoto}" class="ar-captured-photo" alt="Your photo at ${escapeHtml(localizedName)}">`;
+                    photoSection.innerHTML = `<p class="ar-photo-label">${t('messages.yourPhoto')}</p><img src="${savedPhoto}" class="ar-captured-photo" alt="${t('messages.yourPhoto')} ${escapeHtml(localizedName)}">`;
                 } else {
                     photoSection.innerHTML = '';
                 }
@@ -1704,9 +1704,9 @@ async function discoverExtraLocation(info) {
     const discoveryMsgEl = document.getElementById('discovery-message');
     const discoveryFactEl = document.getElementById('discovery-fact');
 
-    if (discoveryTitleEl) discoveryTitleEl.textContent = `You found ${info.name}!`;
-    if (discoveryMsgEl) discoveryMsgEl.textContent = 'Bonus location discovered!';
-    if (discoveryFactEl) discoveryFactEl.innerHTML = `<strong>Bonus Points: +${info.points}</strong>`;
+    if (discoveryTitleEl) discoveryTitleEl.textContent = t('messages.youFound', {name: info.name});
+    if (discoveryMsgEl) discoveryMsgEl.textContent = t('messages.bonusLocationDiscovered');
+    if (discoveryFactEl) discoveryFactEl.innerHTML = `<strong>${t('messages.bonusPoints', {points: info.points})}</strong>`;
 
     openModal('discovery-modal');
     loadLeaderboard();
@@ -1835,10 +1835,10 @@ async function discoverLocation(locationKey, isFirstVisit = false) {
     
     let factHTML = `<strong>${t('messages.funFact')}:</strong> ${localizedFact}`;
     if (pointsResult) {
-        let pointsText = `<br><br><strong>Points Earned: +${pointsResult.pointsAwarded}</strong>`;
+        let pointsText = `<br><br><strong>${t('messages.pointsEarned', {points: pointsResult.pointsAwarded})}</strong>`;
         if (pointsResult.bonusPoints > 0) {
-            pointsText += `<br><strong>Completion Bonus: +${pointsResult.bonusPoints}</strong>`;
-            pointsText += `<br><strong>Total Points: ${pointsResult.totalPoints}</strong>`;
+            pointsText += `<br><strong>${t('messages.completionBonus', {points: pointsResult.bonusPoints})}</strong>`;
+            pointsText += `<br><strong>${t('messages.totalPoints', {points: pointsResult.totalPoints})}</strong>`;
         }
         factHTML += pointsText;
     }
@@ -1853,7 +1853,7 @@ async function discoverLocation(locationKey, isFirstVisit = false) {
     const photoSection = document.getElementById('discovery-photo-section');
     if (photoSection) {
         if (savedPhoto && savedPhoto.startsWith('data:image/jpeg;base64,')) {
-            photoSection.innerHTML = `<p class="ar-photo-label">Your photo:</p><img src="${savedPhoto}" class="ar-captured-photo" alt="Your photo at ${escapeHtml(localizedName)}">`;
+            photoSection.innerHTML = `<p class="ar-photo-label">${t('messages.yourPhoto')}</p><img src="${savedPhoto}" class="ar-captured-photo" alt="${t('messages.yourPhoto')} ${escapeHtml(localizedName)}">`;
         } else {
             photoSection.innerHTML = '';
         }
@@ -2619,7 +2619,7 @@ function setupARScene(locationKey) {
         `;
         placeholder.textContent = '📷';
         const lineBreak1 = document.createElement('br');
-        const cameraText = document.createTextNode('Camera View');
+        const cameraText = document.createTextNode(t('messages.cameraView'));
         const lineBreak2 = document.createElement('br');
         const smallText = document.createElement('small');
         smallText.style.fontSize = '14px';
@@ -3851,7 +3851,7 @@ function addMarkerToMap(place, type, icon) {
             const popupElement = popup.getElement();
             if (popupElement) {
                 const button = document.createElement('button');
-                button.textContent = 'View Details';
+                button.textContent = t('cards.viewDetails');
                 button.style.cssText = `
                     margin-top: 0.8rem;
                     padding: 0.5rem 1rem;
@@ -4661,7 +4661,7 @@ async function buildCollageCanvas() {
 async function downloadCollage() {
     const btn = document.querySelector('.collage-download-btn');
     const origText = btn ? btn.textContent : null;
-    if (btn) btn.textContent = '⏳ Preparing…';
+    if (btn) btn.textContent = t('messages.preparing');
     try {
         const canvas = await buildCollageCanvas();
         if (!canvas) return;
@@ -4677,7 +4677,7 @@ async function downloadCollage() {
 async function shareCollageNative() {
     const btn = document.querySelector('.collage-share-btn');
     const origText = btn ? btn.textContent : null;
-    if (btn) btn.textContent = '⏳ Preparing…';
+    if (btn) btn.textContent = t('messages.preparing');
     try {
         const canvas = await buildCollageCanvas();
         if (!canvas) return;
@@ -4820,7 +4820,7 @@ Promise.all([loadScavengerData(), loadRewardsDiscountsData()]).then(() => {
 }).catch(e => {
     console.error('Hunt initialization failed: required data could not be loaded.', e);
     if (isHuntPage) {
-        showNotification('Could not load hunt data. Please refresh the page.', 'error');
+        showNotification(t('messages.failedHuntData'), 'error');
     }
 });
 
