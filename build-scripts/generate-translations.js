@@ -107,12 +107,23 @@ function setNestedValue(obj, dottedKey, value) {
     const parts = dottedKey.split('.');
     let cur = obj;
     for (let i = 0; i < parts.length - 1; i++) {
-        if (cur[parts[i]] === null || typeof cur[parts[i]] !== 'object') {
-            cur[parts[i]] = {};
+        const part = parts[i];
+        // Guard against prototype pollution
+        if (part === '__proto__' || part === 'constructor' || part === 'prototype') {
+            console.warn(`[translations] Skipping key "${dottedKey}" – segment "${part}" is disallowed.`);
+            return;
         }
-        cur = cur[parts[i]];
+        if (cur[part] === null || typeof cur[part] !== 'object' || Array.isArray(cur[part])) {
+            cur[part] = {};
+        }
+        cur = cur[part];
     }
-    cur[parts[parts.length - 1]] = value;
+    const lastPart = parts[parts.length - 1];
+    if (lastPart === '__proto__' || lastPart === 'constructor' || lastPart === 'prototype') {
+        console.warn(`[translations] Skipping key "${dottedKey}" – segment "${lastPart}" is disallowed.`);
+        return;
+    }
+    cur[lastPart] = value;
 }
 
 // ---------------------------------------------------------------------------
