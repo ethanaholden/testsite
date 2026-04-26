@@ -192,6 +192,13 @@
     "progress": {
       "title": "Progresul tău",
       "locationsFound": "locații găsite"
+    },
+    "quiz": {
+      "answerToEarn": "Răspunde la întrebare pentru a câștiga puncte",
+      "submitAnswer": "Trimite Răspunsul",
+      "skip": "Sari (fără puncte)",
+      "whichLocation": "Care dintre acestea este această locație?",
+      "whichBonus": "Care dintre acestea este locația bonus?"
     }
   },
   "leaderboard": {
@@ -206,7 +213,8 @@
     "colLocations": "Locații",
     "colTime": "Timp",
     "loading": "Se încarcă clasamentul...",
-    "refresh": "Actualizează"
+    "refresh": "Actualizează",
+    "youBadge": "TU"
   },
   "themes": {
     "default": {
@@ -341,6 +349,19 @@
     "moveCamera": "Mișcă camera și găsește Grizzly la {{name}}!",
     "pointAtGround": "Îndreaptă spre pământ, atinge pentru a plasa Grizzly!",
     "findGrizzly": "Găsește Grizzly și fă o poză!",
+    "pointsEarned": "Puncte câștigate: +{{points}}",
+    "completionBonus": "Bonus finalizare: +{{points}}",
+    "totalPoints": "Total puncte: {{points}}",
+    "yourPhoto": "Fotografia ta:",
+    "bonusLocationDiscovered": "Locație bonus descoperită!",
+    "bonusPoints": "Puncte bonus: +{{points}}",
+    "preparing": "⏳ Se pregătește…",
+    "cameraView": "Vizualizare cameră",
+    "pointsShort": "puncte",
+    "completionBonusShort": "+{{points}} bonus finalizare!",
+    "failedLeaderboard": "Clasamentul nu a putut fi încărcat",
+    "noPlayersYet": "Niciun jucător pe clasament. Începeți vânătoarea pentru a vă înscrie!",
+    "failedHuntData": "Datele vânătorii nu au putut fi încărcate. Reîncărcați pagina.",
     "langChangedRo": "Limba a fost schimbată în Română",
     "langChangedEn": "Language changed to English"
   },
@@ -373,6 +394,7 @@
     "visitWebsite": "Vizitează site-ul",
     "viewOnMap": "Vizualizează pe hartă",
     "callNow": "Sună acum",
+    "viewDetails": "Vezi Detalii",
     "price": {
       "inexpensive": "Ieftin",
       "moderate": "Moderat",
@@ -384,5 +406,21 @@
     "message": "Acest site utilizează doar cookie-uri funcționale pentru a salva progresul dvs. Nu se folosesc cookie-uri de urmărire sau publicitate.",
     "dismiss": "OK",
     "settings": "Setări cookie"
+  },
+  "profile": {
+    "title": "Profilul tău",
+    "name": "Nume",
+    "totalPoints": "Total puncte",
+    "locationsFound": "Locații Găsite",
+    "huntStatus": "Starea vânătorii",
+    "completed": "✅ Finalizat",
+    "inProgress": "🔄 În desfășurare",
+    "completedDate": "Data finalizării",
+    "changeName": "Schimbă numele",
+    "enterName": "Introduceți numele",
+    "updateName": "Actualizează Numele",
+    "setName": "Setează Numele",
+    "resetProgress": "Resetează Progresul",
+    "areYouSure": "Ești sigur?"
   }
 }

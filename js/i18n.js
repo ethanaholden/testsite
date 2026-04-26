@@ -62,7 +62,20 @@
             pointAtGround: 'Point at the ground, then tap to place Grizzly!',
             findGrizzly: 'Find Grizzly and take a picture!',
             langChangedRo: 'Limba a fost schimbată în Română',
-            langChangedEn: 'Language changed to English'
+            langChangedEn: 'Language changed to English',
+            pointsEarned: 'Points Earned: +{{points}}',
+            completionBonus: 'Completion Bonus: +{{points}}',
+            totalPoints: 'Total Points: {{points}}',
+            yourPhoto: 'Your photo:',
+            bonusLocationDiscovered: 'Bonus location discovered!',
+            bonusPoints: 'Bonus Points: +{{points}}',
+            preparing: '⏳ Preparing…',
+            cameraView: 'Camera View',
+            pointsShort: 'points',
+            completionBonusShort: '+{{points}} completion bonus!',
+            failedLeaderboard: 'Failed to load leaderboard',
+            noPlayersYet: 'No players on leaderboard yet. Start the hunt to join!',
+            failedHuntData: 'Could not load hunt data. Please refresh the page.'
         },
         details: {
             about: 'About', hours: 'Hours', price: 'Price', tips: 'Tips',
@@ -87,6 +100,7 @@
             visitWebsite: 'Visit website',
             viewOnMap: 'View on Map',
             callNow: 'Call Now',
+            viewDetails: 'View Details',
             price: {
                 inexpensive: 'Inexpensive',
                 moderate: 'Moderate',
@@ -120,6 +134,22 @@
             revealingCode: 'Revealing code...',
             codeRevealError: 'Could not reveal discount code right now.',
             codeLocked: 'Discount code is still locked.'
+        },
+        profile: {
+            title: 'Your Profile',
+            name: 'Name',
+            totalPoints: 'Total Points',
+            locationsFound: 'Locations Found',
+            huntStatus: 'Hunt Status',
+            completed: '✅ Completed',
+            inProgress: '🔄 In Progress',
+            completedDate: 'Completed Date',
+            changeName: 'Change name',
+            enterName: 'Enter your name',
+            updateName: 'Update Name',
+            setName: 'Set Name',
+            resetProgress: 'Reset Progress',
+            areYouSure: 'Are you sure?'
         }
     };
 
