@@ -9,3 +9,6 @@ assets/place-photos/*.jpg
 assets/place-photos/*.png
 assets/place-photos/*.ref
 local-storage/
+# Generated from locales/translations.csv at startup – do not edit directly
+locales/en/translation.json
+locales/ro/translation.json

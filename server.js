@@ -7,6 +7,12 @@ require('dotenv').config();
 const storage = require('./storage');
 const siteConfig = require('./site.config');
 const SITE_DOMAIN = siteConfig.SITE_DOMAIN;
+
+// Generate translation JSON files from the CSV source of truth before
+// serving any requests. This is fast (synchronous file I/O) and ensures
+// locales/{lang}/translation.json is always in sync with translations.csv.
+require('./build-scripts/generate-translations')();
+
 const app = express();
 
 // Middleware

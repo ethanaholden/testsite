@@ -139,7 +139,7 @@ hunt.startHunt,Start Hunt,Începe Vânătoarea
 hunt.resetHunt,Reset Hunt,Resetează
 hunt.scanQR,Scan QR Code,Scanează QR
 hunt.sectionTitle,Treasure Hunt,Vânătoare de Comori
-hunt.sectionSubtitle,Explore Rasnov in a fun, interactive way!,Explorați Râșnovul într-un mod distractiv și interactiv!
+hunt.sectionSubtitle,"Explore Rasnov in a fun, interactive way!","Explorați Râșnovul într-un mod distractiv și interactiv!"
 hunt.nextSite,Next Site:,Locul următor:
 hunt.progress.title,Your Progress,Progresul tău
 hunt.progress.locationsFound,locations found,locații găsite
@@ -178,7 +178,7 @@ modals.firstDiscovery.skip,Skip for now,Sari deocamdată
 modals.survey.title,Quick Survey,Sondaj rapid
 modals.survey.message,"Would you like to take a quick survey about your time in Rasnov? We look over every response to improve the site!","Doriți să completați un sondaj rapid despre timpul petrecut în Râșnov? Analizăm fiecare răspuns pentru a îmbunătăți site-ul!"
 modals.survey.reward,🎁 Unlock a special site theme as a thank you!,🎁 Deblocați o temă specială ca mulțumire!
-modals.survey.yes,Yes take the survey!,Da completez sondajul!
+modals.survey.yes,"Yes, take the survey!","Da, completez sondajul!"
 modals.survey.no,Maybe later,Poate mai târziu
 modals.surveyForm.title,Rasnov Survey,Sondaj Râșnov
 modals.surveyForm.openTab,Open in new tab ↗,Deschide în filă nouă ↗
@@ -260,7 +260,7 @@ messages.huntComplete,🎉 Congratulations! You completed the treasure hunt! Tot
 messages.bearWalking,🐻 Grizzly is walking toward you!,🐻 Grizzly vine spre tine!
 messages.bearHere,🐻 Grizzly is here! Take a photo!,🐻 Grizzly e aici! Fă o poză!
 messages.moveCamera,Move the camera around and find Grizzly!,Mișcă camera și găsește Grizzly la {{name}}!
-messages.pointAtGround,Point at the ground then tap to place Grizzly!,Îndreaptă spre pământ atinge pentru a plasa Grizzly!
+messages.pointAtGround,"Point at the ground, then tap to place Grizzly!","Îndreaptă spre pământ, atinge pentru a plasa Grizzly!"
 messages.findGrizzly,Find Grizzly and take a picture!,Găsește Grizzly și fă o poză!
 messages.langChangedRo,Limba a fost schimbată în Română,Limba a fost schimbată în Română
 messages.langChangedEn,Language changed to English,Language changed to English
@@ -323,3 +323,6 @@ profile.updateName,Update Name,Actualizează Numele
 profile.setName,Set Name,Setează Numele
 profile.resetProgress,Reset Progress,Resetează Progresul
 profile.areYouSure,Are you sure?,Ești sigur?
+cookies.message,This website uses functional cookies only to save your progress. No tracking or advertising cookies are used.,Acest site utilizează doar cookie-uri funcționale pentru a salva progresul dvs. Nu se folosesc cookie-uri de urmărire sau publicitate.
+cookies.dismiss,OK,OK
+cookies.settings,Cookie Settings,Setări cookie
