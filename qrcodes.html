@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QR Codes — Discover Rasnov (Debug/Print)</title>
     <link rel="icon" type="image/png" href="images/icon.png">
+    <link rel="stylesheet" href="styles.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -14,6 +15,43 @@
             padding: 24px;
             color: #222;
         }
+
+        /* ── Collage upload grid ── */
+        .collage-upload-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            max-width: 820px;
+            margin: 0 auto 24px;
+            justify-content: center;
+        }
+        .collage-upload-card {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 8px 10px;
+            min-width: 120px;
+            text-align: center;
+            font-size: 0.82rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .collage-upload-card.has-photo { border-color: #4caf50; background: #f0fff3; }
+        .collage-upload-name { font-weight: 600; }
+        .collage-upload-check { color: #4caf50; font-size: 1rem; }
+        .collage-upload-label {
+            background: #2c5f8d; color: #fff; border: none;
+            padding: 4px 10px; border-radius: 6px; cursor: pointer; font-size: 0.8rem;
+        }
+        .collage-upload-label:hover { background: #1e4a6f; }
+        .collage-clear-btn {
+            background: none; border: 1px solid #ccc; border-radius: 6px;
+            padding: 2px 8px; cursor: pointer; font-size: 0.8rem; color: #888;
+        }
+        .collage-clear-btn:hover { border-color: #e55; color: #e55; }
+        #collage-output { max-width: 620px; margin: 0 auto 48px; }
 
         h1 {
             text-align: center;
@@ -280,6 +318,11 @@
 
     <div class="grid" id="bonus-grid"></div>
 
+    <h2>Collage Maker</h2>
+    <p class="section-note">Upload photos for each location to preview the collage. Photos are stored in localStorage using the same keys as the main app (<code>ar_photo_&lt;key&gt;</code>).</p>
+    <div class="collage-upload-grid" id="collage-upload-grid"></div>
+    <div id="collage-output"></div>
+
     <script>
         // Cookie Consent Logic
         (function initCookieConsent() {
@@ -308,6 +351,7 @@
         })();
 
         // QR Codes Page Logic
+        let scavengerData;
         (async function init() {
             const domainInput = document.getElementById('domain-input');
             const mainGrid = document.getElementById('main-grid');
@@ -322,7 +366,7 @@
                 fetch('/data/scavenger-data.json')
             ]);
             const config = await configRes.json();
-            const scavengerData = await dataRes.json();
+            scavengerData = await dataRes.json();
 
             // Set the default domain from site config
             domainInput.value = config.siteDomain || '';
@@ -450,7 +494,147 @@
 
             // Initial render
             renderMainCards();
+            renderCollageUploads();
+            renderCollageSection();
         })();
+
+        // ── Collage Maker ──────────────────────────────────────────────────────
+
+        function setDebugCollageStyle(style) {
+            localStorage.setItem('rasnov_collage_style', style);
+            renderCollageSection();
+            // Refresh active button state
+            document.querySelectorAll('.collage-style-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.style === style);
+            });
+        }
+
+        function renderCollageUploads() {
+            const uploadGrid = document.getElementById('collage-upload-grid');
+            if (!uploadGrid || !scavengerData) return;
+            const order = scavengerData.order || Object.keys(scavengerData.locations);
+            uploadGrid.innerHTML = '';
+            for (const key of order) {
+                const loc = scavengerData.locations[key];
+                if (!loc) continue;
+                const hasPhoto = !!localStorage.getItem('ar_photo_' + key);
+                const card = document.createElement('div');
+                card.className = 'collage-upload-card' + (hasPhoto ? ' has-photo' : '');
+                card.innerHTML = `
+                    <span class="collage-upload-name">${loc.name}</span>
+                    ${hasPhoto ? '<span class="collage-upload-check">✓</span>' : ''}
+                    <label class="collage-upload-label">
+                        ${hasPhoto ? 'Change' : 'Upload'}
+                        <input type="file" accept="image/*" data-key="${key}" style="display:none">
+                    </label>
+                    ${hasPhoto ? `<button class="collage-clear-btn" data-key="${key}">Remove</button>` : ''}
+                `;
+                uploadGrid.appendChild(card);
+            }
+            uploadGrid.querySelectorAll('input[type=file]').forEach(input => {
+                input.addEventListener('change', e => {
+                    const file = e.target.files[0];
+                    if (!file) return;
+                    const reader = new FileReader();
+                    reader.onload = ev => {
+                        const img = new Image();
+                        img.onload = () => {
+                            const MAX = 1200;
+                            let w = img.width, h = img.height;
+                            if (w > MAX || h > MAX) {
+                                if (w > h) { h = Math.round(h * MAX / w); w = MAX; }
+                                else { w = Math.round(w * MAX / h); h = MAX; }
+                            }
+                            const canvas = document.createElement('canvas');
+                            canvas.width = w; canvas.height = h;
+                            canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+                            localStorage.setItem('ar_photo_' + e.target.dataset.key, canvas.toDataURL('image/jpeg', 0.85));
+                            renderCollageUploads();
+                            renderCollageSection();
+                        };
+                        img.src = ev.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                });
+            });
+            uploadGrid.querySelectorAll('.collage-clear-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    localStorage.removeItem('ar_photo_' + btn.dataset.key);
+                    renderCollageUploads();
+                    renderCollageSection();
+                });
+            });
+        }
+
+        function renderCollageSection() {
+            const out = document.getElementById('collage-output');
+            if (!out || !scavengerData) return;
+            const order = scavengerData.order || Object.keys(scavengerData.locations);
+            const locations = scavengerData.locations;
+            const collageStyle = localStorage.getItem('rasnov_collage_style') || 'polaroid';
+            const photoKeys = order.filter(key => {
+                const p = localStorage.getItem('ar_photo_' + key);
+                return p && p.startsWith('data:image/jpeg;base64,');
+            });
+            const mainTotal = order.length;
+            const silver = Math.floor(mainTotal / 2);
+            const tier = photoKeys.length >= mainTotal ? 'gold' : (photoKeys.length >= silver ? 'silver' : '');
+            const borderClass = tier === 'gold' ? 'gold-border' : (tier === 'silver' ? 'silver-border' : '');
+            const tierLabelHTML = tier
+                ? `<div class="collage-tier-label ${tier}">${tier === 'gold' ? '🥇 Gold Collage' : '🥈 Silver Collage'}</div>`
+                : '';
+            const styleButtons = `<div class="collage-style-switcher">
+                <button class="collage-style-btn ${collageStyle === 'polaroid' ? 'active' : ''}" data-style="polaroid" onclick="setDebugCollageStyle('polaroid')">🖼 Polaroid</button>
+                <button class="collage-style-btn ${collageStyle === 'hexagon' ? 'active' : ''}" data-style="hexagon" onclick="setDebugCollageStyle('hexagon')">⬡ Hexagon</button>
+                <button class="collage-style-btn ${collageStyle === 'grid' ? 'active' : ''}" data-style="grid" onclick="setDebugCollageStyle('grid')">⊞ Grid</button>
+            </div>`;
+
+            if (photoKeys.length === 0) {
+                out.innerHTML = `<div class="collage-wrapper">
+                    ${styleButtons}
+                    <div class="collage-empty-state"><span class="collage-empty-icon">📷</span><p>Upload photos above to preview your collage</p></div>
+                    <div class="collage-footer">0 / ${mainTotal} · Find ${silver} for Silver, ${mainTotal} for Gold</div>
+                </div>`;
+                return;
+            }
+
+            const cellMeta = [
+                {rot:-3,tape:'#ffd966'},{rot:2,tape:'#b6d7a8'},{rot:-1,tape:'#9fc5e8'},
+                {rot:4,tape:'#f9cb9c'},{rot:-2,tape:'#ead1dc'},{rot:1,tape:'#ffd966'},
+                {rot:3,tape:'#b6d7a8'},{rot:-4,tape:'#9fc5e8'}
+            ];
+
+            let cells;
+            if (collageStyle === 'hexagon') {
+                const HEX_PER_ROW = 3;
+                const hexRows = [];
+                for (let r = 0; r * HEX_PER_ROW < photoKeys.length; r++) {
+                    const rowKeys = photoKeys.slice(r * HEX_PER_ROW, (r + 1) * HEX_PER_ROW);
+                    const rowCells = rowKeys.map(key => {
+                        const p = localStorage.getItem('ar_photo_' + key);
+                        const label = (locations[key] || {}).name || key;
+                        return `<div class="collage-cell"><img src="${p}" alt="${label}" loading="lazy"><span class="collage-cell-label">${label}</span></div>`;
+                    }).join('');
+                    hexRows.push(`<div class="hex-row ${r % 2 === 1 ? 'hex-row-odd' : ''}">${rowCells}</div>`);
+                }
+                cells = `<div class="hex-grid-inner">${hexRows.join('')}</div>`;
+            } else {
+                cells = photoKeys.map((key, i) => {
+                    const p = localStorage.getItem('ar_photo_' + key);
+                    const label = (locations[key] || {}).name || key;
+                    const m = cellMeta[i % cellMeta.length];
+                    return `<div class="collage-cell" style="--cell-rot:${m.rot}deg;--tape-color:${m.tape}"><img src="${p}" alt="${label}" loading="lazy"><span class="collage-cell-label">${label}</span></div>`;
+                }).join('');
+            }
+
+            out.innerHTML = `<div class="collage-wrapper ${borderClass} collage-style-${collageStyle}">
+                <div class="collage-header"><span class="collage-title">My Rasnov Journey</span></div>
+                ${tierLabelHTML}
+                ${styleButtons}
+                <div class="collage-grid">${cells}</div>
+                <div class="collage-footer">${photoKeys.length} photo${photoKeys.length !== 1 ? 's' : ''} · ${photoKeys.length}/${mainTotal} places</div>
+            </div>`;
+        }
     </script>
 </body>
 </html>
